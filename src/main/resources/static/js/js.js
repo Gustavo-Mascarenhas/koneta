@@ -120,30 +120,132 @@ function showData(data){
 
 
 
-/*
+function getMesa(places, id) {
+      let result = places.filter(resp => resp.name == id.toUpperCase())
+      createModal(result[0])
+    }
 
-function handleMesa(id){
-    let encript = require('BCryptPasswordEncoder');
-    let url = 'localhost';
-    let user = 'root';
-    let pass = 'root';
+    function createModal(place) {
+      document.querySelector("#place_name").textContent += `Nome da mesa : ${place.name}`
+<!--      document.querySelector("#placeID").placeholder = `${place.id}`-->
+      document.querySelector("#placeID").value = place.id
+      document.querySelector("#placeID").textContent += place.id
+<!--      checkCookie()-->
+      document.querySelector("#place_info").textContent += `Periféricos inclusos : ${place.perifericos.map(resp => {
+        return ` ${resp} `
+          })}`
+          return getPlaceInfo(place)
+          }
 
-    let headers = new Headers();
+          function getPlaceInfo(name){
+          return console.log(name.id)
+          }
 
-    //headers.append('Content-Type', 'text/json');
-    headers.append('Authorization', 'Basic' + encript.encode(username + ":" + password));
 
-        fetch(url, {method:'GET',
-        headers: headers,
-        //credentials: 'user:passwd'
-        })
-        .then(response => response.json())
-        .then(json => console.log(json));
 
-}
+          function cleanModal() {
+          document.querySelector("#place_name").textContent = " "
+          document.querySelector("#place_info").textContent = " "
+          }
 
-function writeMesa(){
 
-}
+          function padTo2Digits(num) {
+          return num.toString().padStart(2, '0');
+          }
 
-*/
+          function formatDate(date) {
+          return [
+          date.getFullYear(),
+          padTo2Digits(date.getMonth() + 1),
+          padTo2Digits(date.getDate() + 1),
+          ].join('-');
+          }
+
+          function verify(e, reserva) {
+          e.preventDefault();
+          let date = e.target.fdate_reservation.value;
+          const data = new Date(date);
+          date = formatDate(data);
+          console.log(" data " +  date)
+          console.log(" reserva"+ reserva)
+
+
+          reserva.map(resp => {
+          resp.date.split(" ",1) == date ?
+          (document.querySelector(`#${resp.mesa.name}`).classList.remove("place_empty"),
+          document.querySelector(`#${resp.mesa.name}`).classList.add("place_kono"),
+          document.querySelector(`#${resp.mesa.name}`).removeAttribute("data-bs-toggle"),
+          document.querySelector(`#${resp.mesa.name}`).removeAttribute("data-bs-target"),
+          cleanModal(),
+          console.log(`equal ${resp.date} == ${date.split(" ",1)}  + ${resp.mesa.name}`)
+          )
+          :
+          (document.querySelector(`#${resp.mesa.name}`).classList.remove("place_kono"),
+          console.log("different" + resp.date.split(" ",1) + " == " + date),
+          document.querySelector(`#${resp.mesa.name}`).classList.add("place_empty")
+          )
+
+          })
+          }
+
+          const verifyInfo = (e) =>{
+            e.preventDefault();
+            let dateInfo = e.target.date.value;
+            let idPlace = e.target.placeID.value;
+
+            let idUser = e.target.idUser.value;
+            console.log(`data : ${dateInfo} e idLugar : ${idPlace} e idUsers : ${idUser}`)
+
+            const data = {
+              date : `${dateInfo}`,
+              mesa : {
+                id : idPlace
+              },
+              user : {
+                id: idUser
+              }
+            }
+            console.log(`dados : ${JSON.stringify(data)}`)
+            createReserva(data)
+          }
+
+          const createReserva = async (data) => {
+            const url = "http://localhost:8087/reserva"
+
+            const result = await fetch(url,
+            {
+              method: 'POST',
+              headers: {
+                  'Content-type': "application/json; charset=UTF-8",
+                  "Access-Control-Request-Headers": "*",
+                  "Access-Control-Request-Method": "*",
+                  "Accept": "application/json"
+              },
+              body: JSON.stringify(data)
+          })
+
+          try{
+            const content = await result.json();
+            console.log(content);
+            alert("Reserva criada com Sucesso hehehehehe")
+            location.reload()
+          }catch(e){
+            alert("Erro ao criar reserva"+ e)
+            location.reload()
+          }
+
+
+          }
+
+
+           function padto2Digits(num) {
+          return num.toString().padStart(2, '0');
+          }
+
+          function formatDateReserva(date) {
+          return [
+          padto2Digits(date.getDate() + 1),
+          padto2Digits(date.getMonth() + 1),
+          date.getFullYear(),
+          ].join('-');
+          }
