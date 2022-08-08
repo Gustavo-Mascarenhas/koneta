@@ -31,20 +31,19 @@
         <span class="navbar-text">
           <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
             alt="logout" />
-          <a th:href="@{mesa}"><img src="https://img.icons8.com/ios/50/F97A2D/calendar--v1.png" class="icon mx-3"
+          <a th:href="@{/}"><img src="https://img.icons8.com/ios/50/F97A2D/calendar--v1.png" class="icon mx-3"
               alt="schedule" /></a>
           <a th:href="@{perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png"
               class="icon mx-3" alt="user profile" /></a>
 
 
           <form name="logout" th:action="@{logout}" method="post" class="icon mx-3">
-            <input type="submit" value="Sair" />
+              <input type="submit" value="Sair" class="btn btn-primary">
 <!--            <img src="https://img.icons8.com/ios/24/F97A2D/exit.png " class="icon mx-4" alt="logout" />-->
           </form>
 
         </span>
         </div>
-        <div>
       </div>
     </div>
   </nav>
@@ -291,114 +290,6 @@
     </div>
   </main>
 
-  <script th:inline="javascript">
-    function getMesa(places, id) {
-      let result = places.filter(resp => resp.name == id.toUpperCase())
-      createModal(result[0])
-    }
-
-    function createModal(place) {
-      document.querySelector("#place_name").textContent += `Nome da mesa : ${place.name}`
-<!--      document.querySelector("#placeID").placeholder = `${place.id}`-->
-      document.querySelector("#placeID").value = `IDEZETA : ${place.id}`
-      document.querySelector("#placeID").textContent += `place.id`
-<!--      checkCookie()-->
-      document.querySelector("#place_info").textContent += `Periféricos inclusos : ${place.perifericos.map(resp => {
-        return ` ${resp} `
-          })}`
-          return getPlaceInfo(place)
-          }
-
-          function getPlaceInfo(name){
-          return console.log(name.id)
-          }
-
-
-
-          function cleanModal() {
-          document.querySelector("#place_name").textContent = " "
-          document.querySelector("#place_info").textContent = " "
-          }
-
-
-          function padTo2Digits(num) {
-          return num.toString().padStart(2, '0');
-          }
-
-          function formatDate(date) {
-          return [
-          padTo2Digits(date.getDate() + 1),
-          padTo2Digits(date.getMonth() + 1),
-          date.getFullYear(),
-          ].join('-');
-          }
-
-          function verify(e, reserva) {
-          e.preventDefault();
-          let date = e.target.fdate_reservation.value;
-          const data = new Date(date);
-          date = formatDate(data);
-          console.log(" data " +  date)
-          console.log(" reserva"+ reserva)
-
-
-          reserva.map(resp => {
-          resp.date == date ?
-          (document.querySelector(`#${resp.mesa.name}`).classList.remove("place_empty"),
-          document.querySelector(`#${resp.mesa.name}`).classList.add("place_kono"),
-          console.log(`equal ${resp.date} == ${date}  + ${resp.mesa.name}`)
-          )
-          :
-          (document.querySelector(`#${resp.mesa.name}`).classList.remove("place_kono"),
-          console.log("different" + resp.date + " == " + date),
-          document.querySelector(`#${resp.mesa.name}`).classList.add("place_empty")
-          )
-
-          })
-          }
-
-
-
-
-          const verifyInfo = (e) =>{
-            e.preventDefault();
-            let dateInfo = e.target.date.value;
-            let idPlace = e.target.placeID.value;
-            let idUser = e.target.idUser.value;
-            console.log(`data : ${dateInfo} e idLugar : ${idPlace} e idUsersafado : ${idUser}`)
-            const data = {
-              date : dateInfo,
-              mesa : {
-                id : idPlace
-              },
-              user : {
-                id: idUser
-              }
-            }
-            createReserva(data)
-          }
-
-          const createReserva = async (data) => {
-            const url = "http://localhost:8087/reserva"
-
-            const result = await fetch(url,
-            {
-              method: 'POST',
-              headers: {
-                  'Content-type': "application/json; charset=UTF-8",
-                  "Access-Control-Request-Headers": "*",
-                  "Access-Control-Request-Method": "*",
-                  "Accept": "application/json"
-              },
-              body: JSON.stringify(data)
-          })
-
-           const content = await result.json();
-           console.log(content);
-
-          }
-          </script>
-
           <!-- Modal -->
           <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
                data-bs-keyboard="false">
@@ -410,25 +301,22 @@
                           th:onclick="cleanModal()"></button>
                 </div>
                 <form onsubmit="verifyInfo(event)">
-                  <h6 id="place_name" class="p-2" ></h6>
-          <input hidden type="text" id="placeID" name="placeID" class="p-2">
-                  <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2">
-        <h6 class="modal-body m-0 p-2" id="place_info"></h6>
-          <h6 class="">Escolha a data de sua reserva:</h6>
-          <input type="date" name="date" class="form-control" id="date" th:style="@{width:auto}" />
-          <button type="submit" class="btn btn-outline-danger mb-3 mt-3">
+                  <h6 id="place_name" class="p-2 text-center" ></h6>
+          <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
+                  <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
+        <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
+          <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
+          <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date" th:style="@{width:auto;background-color:var(--gray-50)}" />
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-primary mt-2" th:style="@{width:50%;}">
             Reservar
           </button>
-        </form>
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="submit" class="btn btn-outline-success" th:style="@{width:50%;}">
-            Salvar
-          </button>
-          <button type="button" id="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal"
+          <button type="button" id="btnClose" class="btn btn-outline-danger mt-2" data-bs-dismiss="modal"
             th:style="@{width:40%;}" th:onclick="cleanModal()">
             Fechar
           </button>
         </div>
+                </form>
       </div>
     </div>
   </div>
