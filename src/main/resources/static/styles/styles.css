@@ -36,7 +36,7 @@ li {
 }
 
 .navbar{
-  background-color:var(--dark-100)
+  background-color:var(--dark-100);
 }
 
 main{
@@ -44,7 +44,7 @@ main{
 }
 
 nav{
-  background:var(--dark-100)
+  background:var(--dark-100);
 }
 
 a {
