@@ -1,8 +1,8 @@
 package com.konoPlace.konoplace.controllers;
 
-import com.konoPlace.konoplace.models.MesaModel;
 import com.konoPlace.konoplace.models.ReservaModel;
 import com.konoPlace.konoplace.models.UserModel;
+import com.konoPlace.konoplace.repositories.MesaRepository;
 import com.konoPlace.konoplace.repositories.ReservaRepository;
 import com.konoPlace.konoplace.repositories.UserRepository;
 import com.konoPlace.konoplace.services.CookieService;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -27,6 +26,9 @@ public class ReservaController {
 
     @Autowired
     private UserRepository repoUser;
+
+    @Autowired
+    private MesaRepository repoMesa;
 
     @Autowired
     private CookieService cookieService;
@@ -76,16 +78,10 @@ public class ReservaController {
 
     @PostMapping
     public ResponseEntity<ReservaModel> createReserva(@RequestBody ReservaModel reservation){
-        //DateTime dateTime = new DateTime(reservation.getDate());
-        //reservation.setDate(dateTime.plusDays(1).toDate());
         ReservaModel reserva = new ReservaModel();
-        MesaModel mesa = new MesaModel();
-        Long idMesa = reservation.getMesa().getId();
-
-//        reservation.getMesa().getId();
+        reserva.setUser(reservation.getUser());
         reserva.setDate(reservation.getDate());
         reserva.setMesa(reservation.getMesa());
-        reserva.setUser(reservation.getUser());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(reserva));
     }
