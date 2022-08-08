@@ -32,21 +32,6 @@ public class MesaController {
         return repository.findAll();
     }
 
-    @GetMapping()
-    public ModelAndView getMesaModel(){
-        ModelAndView model = new ModelAndView();
-        model.setViewName("home.html");
-
-        ReservaModel reservamodel = new ReservaModel();
-        List<MesaModel> mesas = repository.findAll();
-        List<ReservaModel> reserva = reservaRepository.findAll();
-        model.addObject("place" , mesas);
-        model.addObject("reservas" , reserva);
-        model.addObject("reservaModel" , reservamodel);
-        return model;
-    }
-
-
     @GetMapping("/{id}")
     public ResponseEntity<MesaModel> getMesaById(@PathVariable Long id){
         return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
