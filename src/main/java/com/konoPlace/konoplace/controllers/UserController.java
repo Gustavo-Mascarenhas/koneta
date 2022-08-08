@@ -141,7 +141,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void createUser(@ModelAttribute UserModel user , HttpServletResponse response) {
+    public void createUser(@ModelAttribute UserModel user , HttpServletResponse response) throws IOException {
             userService.registerUser(user,response);
     }
 
@@ -167,8 +167,6 @@ public class UserController {
         userModel.setNome(user.getNome());
 
         repository.save(user);
-        MesaController mesa = new MesaController();
-        mesa.getMesaModel();
 
     }
 
