@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class UserService {
         return encrypt.matches(newpass,pass);
     }
 
-    public void registerUser(UserModel newUser , HttpServletResponse res){
+    public void registerUser(UserModel newUser , HttpServletResponse res) throws IOException {
                 newUser.setSenha(encryptPass(newUser.getSenha()));
                 newUser.setRole("USER");
                 userRepo.save(newUser);
@@ -49,8 +50,7 @@ public class UserService {
 
                 String userId = String.valueOf(user.getId());
                 cookieService.setCookie(res,userId);
-                MesaController controller = new MesaController();
-                controller.getMesa();
+                res.sendRedirect("http://localhost:8087/login");
     }
 
     public void loginUser(){
