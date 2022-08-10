@@ -14,9 +14,9 @@
     <link rel="shortcut icon" th:href="@{/assets/orange-logo.png}" type="image/x-icon">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg" th:style="@{background:var(--dark-100)}">
+  <nav class="navbar navbar-expand-lg" th:style="@{background-color:var(--dark-100)}">
     <div class="container-fluid">
-        <a class="navbar-brand " th:href="@{/mesa}"><img th:src="@{/assets/text-logo-test.png}" alt="" th:style="@{width:150px}"></a>
+        <a class="navbar-brand " th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt="" th:style="@{width:150px}"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,39 +54,32 @@
                           </div>
 
                           </div>
-                            <input id="id" name="id" th:field="*{id}"  type="text" class="form-control" placeholder="nome" >
+
                             <div class="mb-3">
                                 <label>Link da foto</label>
                                 <input id="uploadImage" name="foto" th:field="*{foto}"  type="text" class="form-control" placeholder="nome" th:onchange="PreviewImage()">
                             </div>
                               <div class="mb-3">
                                   <label>Nome</label>
-                                <input id="name" name="nome" th:field="*{nome}"  type="text" class="form-control"  placeholder="nome">
+                                <input id="name" name="nome" th:field="*{nome}"  type="text" class="form-control" >
                               </div>
                               <div class="mb-3">
                                   <label>Cargo</label>
-                                <input id="job" name="cargo"  th:field="*{cargo}"  type="text"  class="form-control"  placeholder="cargo">
+                                <input id="job" name="cargo"  th:field="*{cargo}"  type="text"  class="form-control"  >
                               </div>
                               <div class="mb-3">
                                   <label>Departamento</label>
-                                <input id="depart" th:field="*{departamento}" name="departamento" type="text" class="form-control"  placeholder="departamento">
+                                <input id="depart" th:field="*{departamento}" name="departamento" type="text" class="form-control"  ></input>
                               </div>
                               <div class="mb-3">
                                   <label>Telefone</label>
-                                <input id="phone" th:field="*{telefone}" name="telefone"  type="text" class="form-control"  placeholder="telefone">
+                                <input id="phone" th:field="*{telefone}" name="telefone"  type="text" class="form-control" >
                               </div>
                               <div class="mb-3">
                                   <label>Email</label>
-                                <input id="email" th:field="*{email}" name="email"  type="email" class="form-control"  placeholder="email">
+                                <input id="email" th:field="*{email}" name="email"  type="email" class="form-control" ></input>
                               </div>
-                              <div class="mb-3">
-                                  <label>Senha</label>
-                                <input id="senha"  th:field="*{senha}" name="senha"  type="text" class="form-control"  placeholder="senha">
-                              </div>
-                              <div class="d-flex flex-column ">
-                                <button type="submit"  class="btn btn-outline-success mt-3">Salvar alterações</button>
-                                <button type="button"  data-bs-toggle="modal" data-bs-target="#modalPerfil" class="btn btn-outline-danger mb-3 mt-3"  >Excluir conta</button>
-                              </div>
+
 
                           </form>
                     </div>
@@ -98,6 +91,31 @@
                 </div>
             </div>
   </main>
+
+  <div class="modal fade" id="modalPerfil" tabindex="-1"  aria-labelledby="modalInfo" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog" th:object="${user}">
+          <form name="f_delete">
+              <div class="modal-content" th:style="@{background:var(--dark-100);}">
+                  <input hidden type="text" th:field="${user.id}" th:value="${user.id}">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="modalInfo"> Deletar conta </h5>
+                      <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cleanModal()"></button>
+                  </div>
+                  <h6>Deseja excluir sua conta ? </h6>
+                  <h6 class="modal-body m-0" id="email_info" th:field="*{email}"></h6>
+                      <h6 class="text-center" id="name_user" th:text="${user.nome}"></h6>
+                      <h6 class="modal-body m-0 text-center" id="place_info" th:text="${user.email}">
+
+                      <div class="modal-footer d-flex justify-content-center">
+                          <button type="button" th:onclick="verifyForDelete()" class="btn btn-outline-success" th:style="@{width:50%;}">Excluir conta</button>
+                          <button type="button" id="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()" th:style="@{width:40%;}">Cancelar</button>
+                      </div>
+
+
+              </div>
+          </form>
+      </div>
+  </div>
 
   <footer class="container-fluid text-white" th:style="@{background:var(--dark-100)}">
       <div class="container">
@@ -141,31 +159,10 @@
       </div>
   </footer>
 
-<!-- Modal -->
-<div class="modal fade" id="modalPerfil" tabindex="-1"  aria-labelledby="modalInfo" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog" th:object="${user}">
-      <form name="f_delete" th:action="@{delete}" method="DELETE">
-    <div class="modal-content" th:style="@{background-color:var(--dark-100);}">
-        <input hidden type="text" th:field="${user.id}" th:value="${user.id}" >
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalInfo"> Deletar conta </h5>
-        <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cleanModal()"></button>
-      </div>
-            <h6>Deseja excluir sua conta ? </h6>
-      <h6 class="modal-body m-0" id="email_info" th:field="*{email}">
-            <h6 class="text-center" id="name_user" th:text="${user.nome}"></h6>
-      <h6 class="modal-body m-0 text-center" id="place_info" th:text="${user.email}">
-      </h6>
-      <div class="modal-footer d-flex justify-content-center">
-          <button type="submit" class="btn btn-outline-success" th:style="@{width:50%;}">Excluir conta</button>
-          <button type="button" id="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()" th:style="@{width:40%;}">Cancelar</button>
-      </div>
+  <script th:inline="javascript">
 
 
-    </div>
-      </form>
-  </div>
-</div>
+  </script>
 
 
 

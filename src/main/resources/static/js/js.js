@@ -126,25 +126,18 @@ function getMesa(places, id) {
 
     function createModal(place) {
       document.querySelector("#place_name").textContent += `Nome da mesa : ${place.name}`
-<!--      document.querySelector("#placeID").placeholder = `${place.id}`-->
       document.querySelector("#placeID").value = place.id
       document.querySelector("#placeID").textContent += place.id
-<!--      checkCookie()-->
       document.querySelector("#place_info").textContent += `Periféricos inclusos : ${place.perifericos.map(resp => {
         return ` ${resp} `
           })}`
           return getPlaceInfo(place)
+          console.log(place)
           }
-
-          function getPlaceInfo(name){
-          return console.log(name.id)
-          }
-
-
 
           function cleanModal() {
-          document.querySelector(".place_info").textContent = ""
-          document.querySelector(".place_data").textContent = ""
+          document.querySelector(".place_info").textContent = " "
+          document.querySelector(".place_data").textContent = " "
           }
 
 
@@ -165,22 +158,17 @@ function getMesa(places, id) {
           let date = e.target.fdate_reservation.value;
           const data = new Date(date);
           date = formatDate(data);
-          console.log(" data " +  date)
-          console.log(" reserva"+ reserva)
-
 
           reserva.map(resp => {
           resp.date.split(" ",1) == date ?
-          (document.querySelector(`#${resp.mesa.name}`).classList.remove("place_empty"),
+          (
+          document.querySelector(`#${resp.mesa.name}`).classList.remove("place_empty"),
           document.querySelector(`#${resp.mesa.name}`).classList.add("place_kono"),
-          document.querySelector(`#${resp.mesa.name}`).removeAttribute("data-bs-toggle"),
-          document.querySelector(`#${resp.mesa.name}`).removeAttribute("data-bs-target"),
-          cleanModal(),
-          console.log(`equal ${resp.date} == ${date.split(" ",1)}  + ${resp.mesa.name}`)
+          cleanModal()
           )
           :
-          (document.querySelector(`#${resp.mesa.name}`).classList.remove("place_kono"),
-          console.log("different" + resp.date.split(" ",1) + " == " + date),
+          (
+          document.querySelector(`#${resp.mesa.name}`).classList.remove("place_kono"),
           document.querySelector(`#${resp.mesa.name}`).classList.add("place_empty")
           )
 

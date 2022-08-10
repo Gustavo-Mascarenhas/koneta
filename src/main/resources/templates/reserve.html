@@ -21,7 +21,7 @@
 <body>
   <nav class="navbar navbar-expand-lg" >
     <div class="container-fluid">
-      <a class="navbar-brand text-white" th:href="@{/mesa}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
+      <a class="navbar-brand text-white" th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
       <div class="d-flex" role="search">
         <span class="navbar-text text-white">
 
@@ -67,24 +67,18 @@
                         <p class="card-text mx-2" id="mesa_identify"  th:text="${reservas.mesa.name}"></p>
                     </div>
                     <div class="card-text mt-2 d-flex">
-                        Data da reserva
-                        <p class="card-text mx-2" id="date_reserve" ></p>
+                        Data da reserva : ano-mes-dia
+                        <p class="card-text mx-2" id="date_reserve" th:text="${reservas.date}" ></p>
                     </div>
                     <div class="card-text mt-2 d-flex" >
                         Incluso na mesa :
                     </div>
-                    <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife"  th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
+                    <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife" th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
                     <a th:href="@{/}" class="btn btn-outline-success" style="width:100%;">Ver Mapa</a>
-                    <div class="d-flex mt-3">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalEditReserva" class="btn btn-outline-primary me-1"
-                           style="width:50%;" th:onclick="verifyData([[${reservas}]])">Editar</a>
-                        <a href="#" type="submit" data-bs-toggle="modal" data-bs-target="#modalDeleteReserva" class="btn btn-outline-danger"
-                           style="width:50%;" th:onclick="verifyData([[${reservas}]])">Cancelar</a>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="modalDeleteReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
@@ -97,8 +91,7 @@
                         <button id="btnCloseIcon" type="button" data-bs-dismiss="modal" aria-label="Close"
                                 th:onclick="cleanModal()"></button>
                     </div>
-                    <form id="f_deleteReserva" >
-                        <input id="placeid" name="placeid" />
+                    <form id="f_deleteReserva">
                         <h6 class="modal-body m-0 place_info mt-2">
                         </h6>
                         <h6 class="modal-body m-0 place_data mt-2">
@@ -114,6 +107,9 @@
                 </div>
             </div>
         </div>
+        </div>
+
+
     </div>
 
   </main>
@@ -201,40 +197,18 @@
       let date = info.date.split(" ",1)
       let idKono = info.id
 
-      let place_info = document.querySelector(".place_info")
-      place_info.textContent = `Kono identification : ${info.mesa.name}`
-      let b = `Nome da mesa :${info.mesa.name}`
-
-      document.querySelector("#f_deleteReserva").addEventListener("submit",(e) => {
-        e.preventDefault()
-        console.log(`Oia o id do coisa ${idKono}`)
-        deleteMesa(idKono)
-      })
+       alert("aaaaaaaaa")
     }
 
-    function async deleteMesa(info){
+    function async deleteUser(info){
          const url = `http://localhost:8087/reserva/${info}`
 
-            const result = await fetch(url,
-            {
-              method: 'delete',
-              headers: {
-                  'Content-type': "application/json; charset=UTF-8",
-                  "Access-Control-Request-Headers": "*",
-                  "Access-Control-Request-Method": "*",
-                  "Accept": "application/json"
-              }
-          })
+         fetch(url , { method: 'DELETE' })
+        .then(() => alert('Usuario Deletado com sucesso'));
+        }.catch(e =>{
+            console.log(`Erro ao deletar Reserva ` ${e})
+        )}
 
-            try{
-            const content = await result.json();
-            console.log(content);
-            alert("Reserva deletada com Sucesso hehehehehe")
-            location.reload()
-          }catch(e){
-            alert("Erro ao deletar reserva"+ e)
-            location.reload()
-          }
     }
 
 

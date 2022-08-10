@@ -168,9 +168,14 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/delete")
-    public void DeleteUser(@ModelAttribute UserModel user , HttpServletResponse response, HttpServletRequest req) throws ServletException {
-        repository.deleteById(user.getId());
-        req.logout();
+    @DeleteMapping("/{id}")
+    public void DeleteUser(@PathVariable Long id, HttpServletResponse response, HttpServletRequest req) throws ServletException {
+        try{
+            repository.deleteById(id);
+            req.logout();
+        }catch(Error e){
+
+        }
+
     }
 }
