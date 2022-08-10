@@ -115,11 +115,9 @@ public class UserController {
     }
 
     @GetMapping("/perfil")
-    public ModelAndView perfilScreen(HttpServletRequest request)
+    public ModelAndView perfilScreen(HttpServletRequest request )
     {
         ModelAndView model = new ModelAndView();
-
-//        Optional<Cookie> result =  Arrays.stream(cookie).findFirst();
         String cookieUserID = cookieService.readCookie(request);
         Long id = Long.parseLong(cookieUserID);
         Optional<UserModel> user = repository.findById(id);

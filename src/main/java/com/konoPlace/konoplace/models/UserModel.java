@@ -29,7 +29,6 @@ public class UserModel {
     @NotBlank
     private String cargo;
 
-    @NotBlank
     private String foto;
 
     @NotBlank
@@ -38,7 +37,7 @@ public class UserModel {
     @NotBlank
     private String senha;
 
-    @NotBlank
+
     private String telefone;
 
     @NotBlank

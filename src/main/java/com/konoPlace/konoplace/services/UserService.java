@@ -1,27 +1,15 @@
 package com.konoPlace.konoplace.services;
 
 
-import com.konoPlace.konoplace.controllers.MesaController;
-import com.konoPlace.konoplace.controllers.UserController;
-import com.konoPlace.konoplace.models.UserLogin;
 import com.konoPlace.konoplace.models.UserModel;
 import com.konoPlace.konoplace.repositories.UserRepository;
-import org.apache.tomcat.util.codec.binary.Base64;
+import com.konoPlace.konoplace.security.BeforeAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
-import org.springframework.data.rest.core.event.ExceptionEvent;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -42,15 +30,20 @@ public class UserService {
         return encrypt.matches(newpass,pass);
     }
 
-    public void registerUser(UserModel newUser , HttpServletResponse res) throws IOException {
+    public void registerUser(UserModel newUser, HttpServletResponse res) throws IOException {
                 newUser.setSenha(encryptPass(newUser.getSenha()));
+                BeforeAuthenticationFilter beforeAuthenticationFilter = new BeforeAuthenticationFilter();
                 newUser.setRole("USER");
                 userRepo.save(newUser);
                 UserModel user = userRepo.findByEmail(newUser.getEmail());
 
                 String userId = String.valueOf(user.getId());
                 cookieService.setCookie(res,userId);
-                res.sendRedirect("http://localhost:8087/login");
+//                beforeAuthenticationFilter.attemptAuthentication(req,res);
+
+                res.setHeader("Location", "/login?registerUser");
+                res.setStatus(302);
+
     }
 
     public void loginUser(){

@@ -56,6 +56,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/mesa").permitAll()
                 .antMatchers(HttpMethod.GET,"/mesa/list").permitAll()
                 .antMatchers(HttpMethod.POST,"/reserva").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/reserva").permitAll()
                 .antMatchers("/forget").permitAll()
                 .antMatchers("/reserva").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/delete/**").permitAll()

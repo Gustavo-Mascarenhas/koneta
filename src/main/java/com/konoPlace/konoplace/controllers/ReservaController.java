@@ -91,8 +91,9 @@ public class ReservaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(reservation));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void DeleteReserva(@PathVariable Long id){
+
         repository.deleteById(id);
     }
 }

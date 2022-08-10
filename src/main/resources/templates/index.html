@@ -52,7 +52,7 @@
 
         <div class="col-md-6 col-sm-7 col-xl-6 col-xxl-6">
           <div class="container-fluid">
-            <form class="m-5 needs-validation" method="POST" th:action="@{register}" th:object="${userModel}">
+            <form class="m-5 needs-validation" method="POST" th:action="@{register}" th:object="${userModel}" >
               <h1 class="mb-3">Cadastro</h1>
 
               <div class="mb-3">
@@ -155,7 +155,12 @@
   </footer>
 
 
+<script th:inline="javascript">
+<!--  function verifyData(event){-->
+<!--    event.preventDefault();-->
+<!--  }-->
 
+</script>
 
 
   <!-- JavaScript Bundle with Popper -->

@@ -59,7 +59,6 @@ function validarcadastro() {
 
 function PreviewImage() {
     let image =  document.getElementById("uploadImage").value
-
     document.getElementById("uploadPreview").src = image;
 }
 
@@ -144,8 +143,8 @@ function getMesa(places, id) {
 
 
           function cleanModal() {
-          document.querySelector("#place_name").textContent = " "
-          document.querySelector("#place_info").textContent = " "
+          document.querySelector(".place_info").textContent = ""
+          document.querySelector(".place_data").textContent = ""
           }
 
 
@@ -234,10 +233,7 @@ function getMesa(places, id) {
             location.reload()
           }
 
-
           }
-
-
            function padto2Digits(num) {
           return num.toString().padStart(2, '0');
           }
@@ -246,6 +242,6 @@ function getMesa(places, id) {
           return [
           padto2Digits(date.getDate() + 1),
           padto2Digits(date.getMonth() + 1),
-          date.getFullYear(),
+          date.getFullYear()
           ].join('-');
           }
