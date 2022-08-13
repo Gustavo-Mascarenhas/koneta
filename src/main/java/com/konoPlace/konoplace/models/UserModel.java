@@ -23,7 +23,7 @@ public class UserModel {
     private String nome;
 
     @NotNull(message = "O atributo Email é obrigatório")
-    @Column(unique=true ,nullable = false)
+    @Column(unique=true)
     private String email;
 
     @NotBlank
@@ -43,7 +43,7 @@ public class UserModel {
     @NotBlank
     private String role;
 
-    @OneToMany(mappedBy = "userModel", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("userModel")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("user")
     private List<ReservaModel> reserva;
 }
