@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
-@Table(name = "\"user\"")
+@Table(name = "user")
 @Entity
 @Data
 public class UserModel {
