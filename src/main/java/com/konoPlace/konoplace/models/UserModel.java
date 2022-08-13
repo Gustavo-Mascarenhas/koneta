@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
-@Table(name = "userModel")
+@Table(name = "usertable")
 @Entity
 @Data
 public class UserModel {
@@ -23,7 +23,7 @@ public class UserModel {
     private String nome;
 
     @NotNull(message = "O atributo Email é obrigatório")
-    @Column(unique=true)
+    @Column(unique=true, nullable=false)
     private String email;
 
     @NotBlank
