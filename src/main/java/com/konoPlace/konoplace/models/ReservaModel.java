@@ -9,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Table(name="reserva")
+@Table(name="\"reserva"")
 @Entity
 @Data
 public class ReservaModel {

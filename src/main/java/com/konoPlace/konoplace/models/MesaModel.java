@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "place")
+@Table(name = "\"place\"")
 @Data
 public class MesaModel {
 

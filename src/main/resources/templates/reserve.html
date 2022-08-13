@@ -201,7 +201,7 @@
     }
 
     function async deleteUser(info){
-         const url = `http://localhost:8087/reserva/${info}`
+         const url = `https://testkoneta.herokuapp.com/reserva/${info}`
 
          fetch(url , { method: 'DELETE' })
         .then(() => alert('Usuario Deletado com sucesso'));
