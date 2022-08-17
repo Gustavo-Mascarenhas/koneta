@@ -77,7 +77,7 @@
                     <a th:href="@{/}" class="btn btn-outline-success" style="width:100%;">Ver Mapa</a>
                     <div class="d-flex mt-3">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modalEditReserva" class="btn btn-outline-primary me-1"
-                           style="width:50%;">Editar</a>
+                           style="width:50%;"  th:onclick="verifyData([[${reservas}]])">Editar</a>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modalDeleteReserva" class="btn btn-outline-danger"
                            style="width:50%;" th:onclick="verifyData([[${reservas}]])">Cancelar</a>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="modal-header">
                         <h5 class="modalInfo"> Deseja Cancelar sua reserva?</h5>
 
-                        <button id="btnCloseIcon" type="button" data-bs-dismiss="modal" aria-label="Close"
+                        <button class="btnCloseIcon" type="button" data-bs-dismiss="modal" aria-label="Close"
                         ></button>
                     </div>
                     <form id="f_deleteReserva" >
@@ -103,6 +103,7 @@
                         </h6>
                         <h6 class="modal-body m-0 place_data mt-2">
                         </h6>
+
 
                         <div class="modal-footer d-flex justify-content-center">
                             <button type="submit" id="deleteReserva" class="btn btn-outline-success" style="width:50%;">Excluir reserva</button>
@@ -165,15 +166,14 @@
       <div class="modal-content" style="background-color:var(--dark-100)">
         <div class="modal-header">
           <h5 class="modal-title" id="modalInfo"> Deseja editar sua reserva?</h5>
-          <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          <button type="button" class="btnCloseIcon btn-close" data-bs-dismiss="modal" aria-label="Close"
             onclick="cleanModal()"></button></div>
 
-
-        <h6 id="place_data">
-
-        </h6>
-        <h6 class="modal-body m-0" class="place_info"></h6>
-          <form action="" onsubmit="date()" class="d-flex flex-column  align-items-center">
+          <h6 class="modal-body m-0 place_info mt-2">
+          </h6>
+          <h6 class="modal-body m-0 place_data mt-2">
+          </h6>
+          <form action="" id="f_editReserva" onsubmit="date()" class="d-flex flex-column  align-items-center">
             <h6 class="">Escolha a nova data:</h6>
             <input type="date" class="form-control" id="date_reservation" name="fdate_reservation"
               th:style="@{width:50%;background-color:var(--bg);}">
@@ -182,7 +182,7 @@
 
         <div class="modal-footer d-flex justify-content-center">
           <button type="submit" class="btn btn-outline-success" th:style="@{width:50%;}">Salvar</button>
-          <button type="button" class="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()"
+          <button type="button" class="btnClose btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()"
             th:style="@{width:50%;}">Cancelar</button>
         </div>
 
@@ -196,11 +196,6 @@
 
 
   <script th:inline="javascript">
-
-  function test(){
-  console.log('sdfsdfsdfsfd')
-  }
-
 
     function verifyData(info){
         console.log(info)
@@ -219,6 +214,11 @@
       deleteReserva(idKono)
       })
 
+  document.querySelector("#f_editReserva").addEventListener("submit", (e)=>{
+      e.preventDefault()
+      console.log('editado'+ idKono)
+
+      })
     }
 
 
