@@ -68,7 +68,7 @@
                     </div>
                     <div class="card-text mt-2 d-flex">
                         Data da reserva
-                        <p class="card-text mx-2" id="date_reserve" ></p>
+                        <p class="card-text mx-2" id="date_reserve" th:text="${reservas.date}" ></p>
                     </div>
                     <div class="card-text mt-2 d-flex" >
                         Incluso na mesa :
@@ -76,10 +76,10 @@
                     <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife"  th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
                     <a th:href="@{/}" class="btn btn-outline-success" style="width:100%;">Ver Mapa</a>
                     <div class="d-flex mt-3">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalEditReserva" class="btn btn-outline-primary me-1"
+                        <a data-bs-toggle="modal" data-bs-target="#modalEditReserva" class="btn btn-outline-primary me-1"
                            style="width:50%;"  th:onclick="verifyData([[${reservas}]])">Editar</a>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalDeleteReserva" class="btn btn-outline-danger"
-                           style="width:50%;" th:onclick="verifyData([[${reservas}]])">Cancelar</a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalDeleteReserva" class="btn btn-outline-danger"
+                           style="width:50%;" th:onclick="verifyData([[${reservas}]])">Excluir</a>
                     </div>
             </div>
         </div>
@@ -95,10 +95,10 @@
                         <h5 class="modalInfo"> Deseja Cancelar sua reserva?</h5>
 
                         <button class="btnCloseIcon" type="button" data-bs-dismiss="modal" aria-label="Close"
-                        ></button>
+                                th:onclick="cleanModal()"></button>
                     </div>
                     <form id="f_deleteReserva" >
-                        <input id="placeid" name="placeid" />
+                        <input class="placeid" hidden name="placeid" />
                         <h6 class="modal-body m-0 place_info mt-2">
                         </h6>
                         <h6 class="modal-body m-0 place_data mt-2">
@@ -108,7 +108,7 @@
                         <div class="modal-footer d-flex justify-content-center">
                             <button type="submit" id="deleteReserva" class="btn btn-outline-success" style="width:50%;">Excluir reserva</button>
                             <button type="button" class="btnClose btn btn-outline-danger" data-bs-dismiss="modal"
-                                    style="width:40%;">Cancelar</button>
+                                    style="width:40%;" th:onclick="cleanModal()">Cancelar</button>
                         </div>
 
                     </form>
@@ -167,22 +167,20 @@
         <div class="modal-header">
           <h5 class="modal-title" id="modalInfo"> Deseja editar sua reserva?</h5>
           <button type="button" class="btnCloseIcon btn-close" data-bs-dismiss="modal" aria-label="Close"
-            onclick="cleanModal()"></button></div>
+            th:onclick="cleanModal()"></button>
+        </div>
 
-          <h6 class="modal-body m-0 place_info mt-2">
-          </h6>
-          <h6 class="modal-body m-0 place_data mt-2">
-          </h6>
-          <form action="" id="f_editReserva" onsubmit="date()" class="d-flex flex-column  align-items-center">
-            <h6 class="">Escolha a nova data:</h6>
+
+          <form id="f_editReserva" th:onsubmit="verifyTotalReserva(event,[[${reservaTotal}]])" class="d-flex flex-column align-items-center">
+            <h6 class="mt-3 mb-2">Escolha a nova data:</h6>
+
             <input type="date" class="form-control" id="date_reservation" name="fdate_reservation"
               th:style="@{width:50%;background-color:var(--bg);}">
-            <button type="submit" class="btn btn-outline-danger mb-3 mt-3" th:style="@{width:50%;}">Verificar disponibilidade</button>
+            <button type="submit" class="btn btn-outline-success mb-3 mt-3" th:style="@{width:50%;}">Editar data</button>
           </form>
 
         <div class="modal-footer d-flex justify-content-center">
-          <button type="submit" class="btn btn-outline-success" th:style="@{width:50%;}">Salvar</button>
-          <button type="button" class="btnClose btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()"
+          <button type="button" class="btnClose btn btn-outline-danger" data-bs-dismiss="modal" th:onclick="cleanModal()"
             th:style="@{width:50%;}">Cancelar</button>
         </div>
 
@@ -196,36 +194,106 @@
 
 
   <script th:inline="javascript">
+  var id = null
+  var placeIDKono = null
+  var userID = null
+
+  function verifyTotalReserva(event,reservas){
+    event.preventDefault();
+     var date = event.target.fdate_reservation.value
+     let konoID = id
+
+     if(date.length<1){
+     alert("A data não pode ser nula")
+     return
+     }
+
+    const resultMesaAlugada = reservas.filter(resp=>{
+        return resp.mesa.id == placeIDKono && resp.date.split(" ",1) == date
+    })
+
+    // verify if this table has a reservation with the chose date
+    if(resultMesaAlugada.length>0){
+        alert("Essa data já foi escolhida por outro usuário")
+    }else{
+        editReserva(date)
+    }
+    console.log(`id koneta ${konoID}`)
+  }
+
+  function formatData(date){
+    let data = date.split(" ",1).join("")
+    data = data.split("-")
+    let day = data[2]
+    let month = data[1]
+    let year = data[0]
+    return `${day}-${month}-${year}`
+  }
+
 
     function verifyData(info){
         console.log(info)
         let idKono = info.id
-        let data = date(info.date)
+        placeIDKono = info.mesa.id
+        id = info.id
+        userID = info.user.id
+        let dateV = info.date
 
       let place_info = document.querySelector(".place_info")
       let place_date = document.querySelector(".place_data")
+      document.querySelector(".placeid").textContent=info.id
       place_info.textContent = `Kono identification : ${info.mesa.name}`
-      place_date.textContent = `Data : ${data}`
-      console.log(`${info.mesa.name} e ${info.id} e ${data}`)
+      place_date.textContent = `Data : ${formatData(dateV)}`
 
       document.querySelector("#f_deleteReserva").addEventListener("submit", (e)=>{
       e.preventDefault()
-      console.log('delete'+ idKono)
       deleteReserva(idKono)
       })
 
-  document.querySelector("#f_editReserva").addEventListener("submit", (e)=>{
-      e.preventDefault()
-      console.log('editado'+ idKono)
+    }
 
-      })
+    const editReserva = async (date) =>{
+        const url = `http://localhost:8087/reserva`
+
+        const data = {
+            id : id,
+            date: date,
+            mesa:{id:placeIDKono},
+            user:{id:userID}
+        }
+
+        const result = await fetch(url,
+            {
+              method: 'PUT',
+              body:JSON.stringify(data),
+              headers: {
+                   'Content-type': "application/json; charset=UTF-8",
+                  "Access-Control-Request-Headers": "*",
+                  "Access-Control-Request-Method": "*",
+                  "Accept": "application/json",
+              },
+            },
+           
+            )
+            .then(response => {
+            })
+            .then(data => {
+            alert('Reserva editada com sucesso')
+            location.reload()
+            })
+            .catch(error => {
+            console.log(error)
+            location.reload()
+            })
+
+
     }
 
 
-    const deleteReserva = async (data) => {
+    async function deleteReserva(data){
             const url = `http://localhost:8087/reserva/${data}`
 
-            const result = await fetch(url,
+            const result = await fetch (url,
             {
               method: 'DELETE',
               headers: {
@@ -233,14 +301,15 @@
                   "Access-Control-Request-Headers": "*",
                   "Access-Control-Request-Method": "*",
               },
-            }).then(response => {
+            })
+            .then(response => {
             return response.text()
             })
-            .then((data) => {
+            .then(data => {
             alert('Reserva deletada com sucesso')
             location.reload()
             })
-            .catch((error) => {
+            .catch(error => {
             console.log(error)
             location.reload()
             })
