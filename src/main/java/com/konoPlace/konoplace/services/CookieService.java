@@ -25,11 +25,18 @@ public class CookieService {
         res.addCookie(cookie);
 
     }
-
     public String readCookie(HttpServletRequest request) {
         Cookie userID = WebUtils.getCookie(request, "userID");
         String cookie = userID.getValue();
         return cookie;
+    }
+
+    public void deleteCookie(HttpServletResponse res){
+        Cookie cookie = new Cookie("userID", "");
+        Cookie cookieSession = new Cookie("JSESSIONID", "");
+        cookie.setMaxAge(0);
+        cookieSession.setMaxAge(0);
+        res.addCookie(cookie);
     }
 
 }
