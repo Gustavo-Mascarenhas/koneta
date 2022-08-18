@@ -168,9 +168,15 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/delete")
-    public void DeleteUser(@ModelAttribute UserModel user , HttpServletResponse response, HttpServletRequest req) throws ServletException {
-        repository.deleteById(user.getId());
-        req.logout();
+    @DeleteMapping("/{id}")
+    public void DeleteUser(@PathVariable Long id , HttpServletResponse res,HttpServletRequest req) throws ServletException {
+        if(id != null){
+            repository.deleteById(id);
+            cookieService.deleteCookie(res);
+            req.logout();
+        }else{
+
+        }
+
     }
 }
