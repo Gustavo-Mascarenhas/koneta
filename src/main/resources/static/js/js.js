@@ -103,8 +103,9 @@ function getMesa(places, id) {
 
 
           function cleanModal() {
-           document.querySelector("#place_name").textContent = ""
-           document.querySelector("#place_info").textContent = ""
+           document.querySelector(".place_info").textContent = ""
+           document.querySelector(".place_data").textContent = ""
+
           }
 
 
