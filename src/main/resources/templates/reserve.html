@@ -192,13 +192,127 @@
 
 
   <script th:inline="javascript">
+ var id = null
+  var placeIDKono = null
+  var userID = null
+
+  function verifyTotalReserva(event,reservas){
+    event.preventDefault();
+     var date = event.target.fdate_reservation.value
+     let konoID = id
+
+     if(date.length<1){
+     alert("A data não pode ser nula")
+     return
+     }
+
+    const resultMesaAlugada = reservas.filter(resp=>{
+        return resp.mesa.id == placeIDKono && resp.date.split(" ",1) == date
+    })
+
+    // verify if this table has a reservation with the chose date
+    if(resultMesaAlugada.length>0){
+        alert("Essa data já foi escolhida por outro usuário")
+    }else{
+        editReserva(date)
+    }
+    console.log(`id koneta ${konoID}`)
+  }
+
+  function formatData(date){
+    let data = date.split(" ",1).join("")
+    data = data.split("-")
+    let day = data[2]
+    let month = data[1]
+    let year = data[0]
+    return `${day}-${month}-${year}`
+  }
+
 
     function verifyData(info){
-      let date = info.date.split(" ",1)
-      let idKono = info.id
+        console.log(info)
+        let idKono = info.id
+        placeIDKono = info.mesa.id
+        id = info.id
+        userID = info.user.id
+        let dateV = info.date
 
-       alert("aaaaaaaaa")
+      let place_info = document.querySelector(".place_info")
+      let place_date = document.querySelector(".place_data")
+      document.querySelector(".placeid").textContent=info.id
+      place_info.textContent = `Kono identification : ${info.mesa.name}`
+      place_date.textContent = `Data : ${formatData(dateV)}`
+
+      document.querySelector("#f_deleteReserva").addEventListener("submit", (e)=>{
+      e.preventDefault()
+      deleteReserva(idKono)
+      })
+
     }
+
+    const editReserva = async (date) =>{
+        const url = `http://localhost:8087/reserva`
+
+        const data = {
+            id : id,
+            date: date,
+            mesa:{id:placeIDKono},
+            user:{id:userID}
+        }
+
+        const result = await fetch(url,
+            {
+              method: 'PUT',
+              body:JSON.stringify(data),
+              headers: {
+                   'Content-type': "application/json; charset=UTF-8",
+                  "Access-Control-Request-Headers": "*",
+                  "Access-Control-Request-Method": "*",
+                  "Accept": "application/json",
+              },
+            },
+
+            )
+            .then(response => {
+            })
+            .then(data => {
+            alert('Reserva editada com sucesso')
+            location.reload()
+            })
+            .catch(error => {
+            console.log(error)
+            location.reload()
+            })
+
+
+    }
+
+
+    async function deleteReserva(data){
+            const url = `https://testkoneta.herokuapp.com/reserva/${data}`
+
+            const result = await fetch (url,
+            {
+              method: 'DELETE',
+              headers: {
+                  'Content-type': "application/json; charset=UTF-8",
+                  "Access-Control-Request-Headers": "*",
+                  "Access-Control-Request-Method": "*",
+              },
+            })
+            .then(response => {
+            return response.text()
+            })
+            .then(data => {
+            alert('Reserva deletada com sucesso')
+            location.reload()
+            })
+            .catch(error => {
+            console.log(error)
+            location.reload()
+            })
+
+          }
 
 
   </script>
