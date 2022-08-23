@@ -197,7 +197,7 @@ function getMesa(places, id) {
           }
 
           const createReserva = async (data) => {
-            const url = "http://localhost:8087/reserva"
+            const url = "https://testkoneta.herokuapp.com/reserva"
 
             const result = await fetch(url,
             {

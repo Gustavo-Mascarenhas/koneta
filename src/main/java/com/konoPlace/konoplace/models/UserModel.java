@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
-@Table(name = "user")
+@Table(name = "kono")
 @Entity
 @Data
 public class UserModel {
@@ -23,7 +23,7 @@ public class UserModel {
     private String nome;
 
     @NotNull(message = "O atributo Email é obrigatório")
-    @Column(unique=true ,nullable = false)
+    @Column(unique=true, nullable=false)
     private String email;
 
     @NotBlank
@@ -43,7 +43,7 @@ public class UserModel {
     @NotBlank
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("user")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("usuario")
     private List<ReservaModel> reserva;
 }
