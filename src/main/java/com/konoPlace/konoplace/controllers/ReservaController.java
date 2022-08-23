@@ -79,7 +79,7 @@ public class ReservaController {
     @PostMapping
     public ResponseEntity<ReservaModel> createReserva(@RequestBody ReservaModel reservation){
         ReservaModel reserva = new ReservaModel();
-        reserva.setUser(reservation.getUser());
+        reserva.setUsuario(reservation.getUsuario());
         reserva.setDate(reservation.getDate());
         reserva.setMesa(reservation.getMesa());
 
