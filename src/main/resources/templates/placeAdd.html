@@ -45,7 +45,7 @@
 <main>
   <div class="container-fluid">
     <h1>aaaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>
-    <form th:object="${mesa}" th:action="@{/registerMesa}" method="post">
+    <form th:object="${mesa}" th:action="@{/mesa}" method="post">
       <input type="text" th:field="*{name}">
       <input type="text" th:field="*{perifericos}">
       <button type="submit">Enviar</button>
