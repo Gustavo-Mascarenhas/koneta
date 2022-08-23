@@ -77,7 +77,7 @@ public class UserController {
 
     @GetMapping("/test")
     public ModelAndView testScreen(){
-        ModelAndView model = new ModelAndView("test");
+        ModelAndView model = new ModelAndView("placeAdd");
         MesaModel mesa = new MesaModel();
         model.addObject("mesa", mesa);
         return model;
