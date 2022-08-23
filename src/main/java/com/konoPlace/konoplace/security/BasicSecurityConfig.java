@@ -69,7 +69,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterBefore(beforeAuthenticationFilter , BeforeAuthenticationFilter.class)
                 .formLogin()
-                .defaultSuccessUrl("/mesa")
+                .defaultSuccessUrl("/")
                 .loginPage("/login")
                 .and()
                 .logout()
