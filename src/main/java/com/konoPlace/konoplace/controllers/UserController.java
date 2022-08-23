@@ -170,20 +170,12 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-<<<<<<< HEAD
-    public void DeleteUser(@PathVariable Long id, HttpServletResponse response, HttpServletRequest req) throws ServletException {
-        try{
-            repository.deleteById(id);
-            req.logout();
-        }catch(Error e){
-=======
     public void DeleteUser(@PathVariable Long id , HttpServletResponse res,HttpServletRequest req) throws ServletException {
         if(id != null){
             repository.deleteById(id);
             cookieService.deleteCookie(res);
             req.logout();
         }else{
->>>>>>> master
 
         }
 
