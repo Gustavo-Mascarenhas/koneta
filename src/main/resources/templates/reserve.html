@@ -67,11 +67,7 @@
                         <p class="card-text mx-2" id="mesa_identify"  th:text="${reservas.mesa.name}"></p>
                     </div>
                     <div class="card-text mt-2 d-flex">
-<<<<<<< HEAD
                         Data da reserva : ano-mes-dia
-=======
-                        Data da reserva
->>>>>>> master
                         <p class="card-text mx-2" id="date_reserve" th:text="${reservas.date}" ></p>
                     </div>
                     <div class="card-text mt-2 d-flex" >
@@ -79,12 +75,9 @@
                     </div>
                     <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife" th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
                     <a th:href="@{/}" class="btn btn-outline-success" style="width:100%;">Ver Mapa</a>
-<<<<<<< HEAD
-
                     </div>
                 </div>
             </div>
-=======
                     <div class="d-flex mt-3">
                         <a data-bs-toggle="modal" data-bs-target="#modalEditReserva" class="btn btn-outline-primary me-1"
                            style="width:50%;"  th:onclick="verifyData([[${reservas}]])">Editar</a>
@@ -92,10 +85,7 @@
                            style="width:50%;" th:onclick="verifyData([[${reservas}]])">Excluir</a>
                     </div>
             </div>
-        </div>
-        </div>
-        </div>
->>>>>>> master
+
 
         <!-- Modal -->
         <div class="modal fade" id="modalDeleteReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
@@ -108,12 +98,8 @@
                         <button class="btnCloseIcon" type="button" data-bs-dismiss="modal" aria-label="Close"
                                 th:onclick="cleanModal()"></button>
                     </div>
-<<<<<<< HEAD
-                    <form id="f_deleteReserva">
-=======
                     <form id="f_deleteReserva" >
                         <input class="placeid" hidden name="placeid" />
->>>>>>> master
                         <h6 class="modal-body m-0 place_info mt-2">
                         </h6>
                         <h6 class="modal-body m-0 place_data mt-2">
