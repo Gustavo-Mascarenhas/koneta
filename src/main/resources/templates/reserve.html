@@ -200,18 +200,6 @@
        alert("aaaaaaaaa")
     }
 
-    function async deleteUser(info){
-         const url = `https://testkoneta.herokuapp.com/reserva/${info}`
-
-         fetch(url , { method: 'DELETE' })
-        .then(() => alert('Usuario Deletado com sucesso'));
-        }.catch(e =>{
-            console.log(`Erro ao deletar Reserva ` ${e})
-        )}
-
-    }
-
-
 
   </script>
 
