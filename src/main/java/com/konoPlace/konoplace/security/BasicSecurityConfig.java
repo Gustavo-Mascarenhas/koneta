@@ -53,15 +53,6 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/css/**", "/js/**", "/assets/**").permitAll()
                 .antMatchers("/register").permitAll()
-<<<<<<< HEAD
-                .antMatchers(HttpMethod.POST,"/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/").permitAll()
-                .antMatchers(HttpMethod.GET,"/").permitAll()
-                .antMatchers(HttpMethod.GET,"/test").permitAll()
-                .antMatchers(HttpMethod.GET,"/list").permitAll()
-=======
-                .antMatchers(HttpMethod.POST,"/").permitAll()
->>>>>>> master
                 .antMatchers(HttpMethod.GET,"/mesa/list").permitAll()
                 .antMatchers(HttpMethod.POST,"/reserva").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/reserva").permitAll()
