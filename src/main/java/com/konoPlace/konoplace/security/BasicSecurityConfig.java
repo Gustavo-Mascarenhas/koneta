@@ -64,7 +64,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/delete/**").permitAll()
                 .antMatchers("/styles/**","/js/**","/assets/**").permitAll()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .anyRequest().authenticated()
+                //.anyRequest().authenticated()
                 .and()
                 .addFilterBefore(beforeAuthenticationFilter , BeforeAuthenticationFilter.class)
                 .formLogin()
