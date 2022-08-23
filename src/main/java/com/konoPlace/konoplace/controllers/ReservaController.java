@@ -53,6 +53,7 @@ public class ReservaController {
 
         Long id = Long.valueOf(cookieService.readCookie(request));
         Optional<UserModel> user = repoUser.findById(id);
+        List<ReservaModel> reservasTotal = repository.findAll();
 
         UserModel userModel = new UserModel();
         userModel.setEmail(user.get().getEmail());
@@ -65,6 +66,7 @@ public class ReservaController {
         userModel.setTelefone(user.get().getTelefone());
 
         model.addObject("reservable", userModel.getReserva());
+        model.addObject("reservaTotal",reservasTotal);
         return model;
     }
 
@@ -93,7 +95,6 @@ public class ReservaController {
 
     @DeleteMapping("/{id}")
     public void DeleteReserva(@PathVariable Long id){
-
         repository.deleteById(id);
     }
 }

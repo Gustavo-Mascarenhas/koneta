@@ -67,7 +67,11 @@
                         <p class="card-text mx-2" id="mesa_identify"  th:text="${reservas.mesa.name}"></p>
                     </div>
                     <div class="card-text mt-2 d-flex">
+<<<<<<< HEAD
                         Data da reserva : ano-mes-dia
+=======
+                        Data da reserva
+>>>>>>> master
                         <p class="card-text mx-2" id="date_reserve" th:text="${reservas.date}" ></p>
                     </div>
                     <div class="card-text mt-2 d-flex" >
@@ -75,10 +79,23 @@
                     </div>
                     <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife" th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
                     <a th:href="@{/}" class="btn btn-outline-success" style="width:100%;">Ver Mapa</a>
+<<<<<<< HEAD
 
                     </div>
                 </div>
             </div>
+=======
+                    <div class="d-flex mt-3">
+                        <a data-bs-toggle="modal" data-bs-target="#modalEditReserva" class="btn btn-outline-primary me-1"
+                           style="width:50%;"  th:onclick="verifyData([[${reservas}]])">Editar</a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalDeleteReserva" class="btn btn-outline-danger"
+                           style="width:50%;" th:onclick="verifyData([[${reservas}]])">Excluir</a>
+                    </div>
+            </div>
+        </div>
+        </div>
+        </div>
+>>>>>>> master
 
         <!-- Modal -->
         <div class="modal fade" id="modalDeleteReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
@@ -88,19 +105,25 @@
                     <div class="modal-header">
                         <h5 class="modalInfo"> Deseja Cancelar sua reserva?</h5>
 
-                        <button id="btnCloseIcon" type="button" data-bs-dismiss="modal" aria-label="Close"
+                        <button class="btnCloseIcon" type="button" data-bs-dismiss="modal" aria-label="Close"
                                 th:onclick="cleanModal()"></button>
                     </div>
+<<<<<<< HEAD
                     <form id="f_deleteReserva">
+=======
+                    <form id="f_deleteReserva" >
+                        <input class="placeid" hidden name="placeid" />
+>>>>>>> master
                         <h6 class="modal-body m-0 place_info mt-2">
                         </h6>
                         <h6 class="modal-body m-0 place_data mt-2">
                         </h6>
 
+
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="submit" class="btn btn-outline-success" style="width:50%;">Excluir reserva</button>
-                            <button type="button" class="btnClose btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()"
-                                    style="width:40%;">Cancelar</button>
+                            <button type="submit" id="deleteReserva" class="btn btn-outline-success" style="width:50%;">Excluir reserva</button>
+                            <button type="button" class="btnClose btn btn-outline-danger" data-bs-dismiss="modal"
+                                    style="width:40%;" th:onclick="cleanModal()">Cancelar</button>
                         </div>
 
                     </form>
@@ -154,45 +177,42 @@
     </div>
 </footer>
 
-<!--  &lt;!&ndash; Modal &ndash;&gt;-->
-<!--  <div class="modal fade" id="modalEditReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"-->
-<!--    data-bs-keyboard="false">-->
-<!--    <div class="modal-dialog">-->
-<!--      <div class="modal-content" style="background-color:var(&#45;&#45;dark-100)">-->
-<!--        <div class="modal-header">-->
-<!--          <h5 class="modal-title" id="modalInfo"> Deseja editar sua reserva?</h5>-->
-<!--          <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"-->
-<!--            onclick="cleanModal()"></button></div>-->
+  <!-- Modal -->
+  <div class="modal fade" id="modalEditReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
+    data-bs-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color:var(--dark-100)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalInfo"> Deseja editar sua reserva?</h5>
+          <button type="button" class="btnCloseIcon btn-close" data-bs-dismiss="modal" aria-label="Close"
+            th:onclick="cleanModal()"></button>
+        </div>
 
 
-<!--        <h6 id="place_data">-->
+          <form id="f_editReserva" th:onsubmit="verifyTotalReserva(event,[[${reservaTotal}]])" class="d-flex flex-column align-items-center">
+            <h6 class="mt-3 mb-2">Escolha a nova data:</h6>
 
-<!--        </h6>-->
-<!--        <h6 class="modal-body m-0" class="place_info"></h6>-->
-<!--          <form action="" onsubmit="date()" class="d-flex flex-column  align-items-center">-->
-<!--            <h6 class="">Escolha a nova data:</h6>-->
-<!--            <input type="date" class="form-control" id="date_reservation" name="fdate_reservation"-->
-<!--              th:style="@{width:50%;background-color:var(&#45;&#45;bg);}">-->
-<!--            <button type="submit" class="btn btn-outline-danger mb-3 mt-3" th:style="@{width:50%;}">Verificar disponibilidade</button>-->
-<!--          </form>-->
+            <input type="date" class="form-control" id="date_reservation" name="fdate_reservation"
+              th:style="@{width:50%;background-color:var(--bg);}">
+            <button type="submit" class="btn btn-outline-success mb-3 mt-3" th:style="@{width:50%;}">Editar data</button>
+          </form>
 
-<!--        <div class="modal-footer d-flex justify-content-center">-->
-<!--          <button type="submit" class="btn btn-outline-success" th:style="@{width:50%;}">Salvar</button>-->
-<!--          <button type="button" class="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()"-->
-<!--            th:style="@{width:50%;}">Cancelar</button>-->
-<!--        </div>-->
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btnClose btn btn-outline-danger" data-bs-dismiss="modal" th:onclick="cleanModal()"
+            th:style="@{width:50%;}">Cancelar</button>
+        </div>
 
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+        </form>
+      </div>
+    </div>
+  </div>
 
 
 
 
 
   <script th:inline="javascript">
- var id = null
+  var id = null
   var placeIDKono = null
   var userID = null
 
@@ -270,8 +290,7 @@
                   "Access-Control-Request-Method": "*",
                   "Accept": "application/json",
               },
-            },
-
+            }
             )
             .then(response => {
             })
@@ -313,7 +332,6 @@
             })
 
           }
-
 
   </script>
 
