@@ -335,7 +335,7 @@
         </div>
         <form th:onsubmit="verifyInfo(event)">
           <h6 id="place_name" class="p-2 text-center"></h6>
-          <input type="text" id="placeID" name="placeID" class="p-2 text-center">
+          <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
           <input type="text" id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
           <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
           <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
