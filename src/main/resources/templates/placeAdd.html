@@ -25,7 +25,7 @@
 
     <nav class="navbar">
       <div class="container-fluid align-content-center">
-        <a class="navbar-brand text-white" th:href="@{/mesa}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
+        <a class="navbar-brand text-white" th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
         <div class="d-flex" role="search">
             <span class="navbar-text ">
               <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
@@ -44,71 +44,12 @@
 
 <main>
   <div class="container-fluid">
-
-    <div class="row align-items-center justify-content-center" style="background-color: var(--bg);">
-      <div class="col-md-6 col-sm-5 col-xl-5 col-xxl-6 m-0 p-0">
-
-        <img th:src="@{/assets/woman.png}" alt="" class="rounded mx-auto img-fluid d-block ">
-
-
-      </div>
-
-      <div class="col-md-6 col-sm-7 col-xl-6 col-xxl-6">
-
-        <div class="container-fluid">
-          <form class="m-5 needs-validation" method="POST" th:action="@{register}" th:object="${place}">
-            <h1 class="mb-3">Cadastro</h1>
-
-            <div class="mb-3">
-              <input th:field="*{nome}" id="name" name="nome" type="text" class="form-control" aria-describedby="emailHelp"
-                     placeholder="Nome do place" required>
-            </div>
-            <div class="mb-3 has-validation">
-              <input th:field="*{cargo}" id="validationCustom03" name="cargo" type="text" class="form-control"
-                     aria-describedby="emailHelp" placeholder="Cargo" required>
-            </div>
-            <div class="mb-3">
-              <input th:field="*{perifericos}" id="departamento" name="departamento" type="text" class="form-control"
-                     placeholder="Departamento">
-            </div>
-            <div class="mb-3">
-              <input th:field="*{telefone}" id="phone" name="telefone" type="text" class="form-control" placeholder="Telefone">
-            </div>
-            <div class="mb-3">
-              <input th:field="*{email}" id="email" name="email" type="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="mb-3">
-              <input th:field="*{foto}" id="foto" name="foto" type="text" class="form-control" placeholder="Link foto">
-            </div>
-            <div class="mb-3">
-              <input id="pass" name="pass" type="password" class="form-control" placeholder="Senha">
-            </div>
-            <div class="mb-3">
-              <input th:field="*{senha}" id="pass-confirm" name="senha" type="password" class="form-control"
-                     placeholder="Confirmar Senha">
-            </div>
-            <div class="mb-3">
-              <input th:field="*{role}"  hidden value="USER" name="role" class="form-control"/>
-
-            </div>
-
-            <div class="mb-3 d-flex justify-content-end">
-              <a th:href="@{login}">Já Tenho conta</a>
-
-            </div>
-            <button type="submit" class="btn btn-outline-secondary">Cadastrar</button>
-
-          </form>
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-
-
+    <h1>aaaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>
+    <form th:object="${mesa}" th:action="@{/mesa}" method="post">
+      <input type="text" th:field="*{name}">
+      <input type="text" th:field="*{perifericos}">
+      <button type="submit">Enviar</button>
+    </form>
   </div>
 
 

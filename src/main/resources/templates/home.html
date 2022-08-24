@@ -22,7 +22,7 @@
 
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand text-white" th:href="@{/mesa}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
+      <a class="navbar-brand text-white" th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -52,8 +52,8 @@
       <div class="container">
         <div class="row p-3 m-3">
           <div class="col-md-6 col-sm-6 col-xl-6 align-self-center p-1">
-            <form action="" th:onsubmit="verify(event,[[${reservas}]])">
-              <h6 class="">Escolha a data de sua reserva:</h6>
+            <form th:onsubmit="verify(event,[[${reservas}]])">
+              <h6>Escolha a data de sua reserva:</h6>
               <input type="date" class="form-control" id="date_reservation" name="fdate_reservation"
                 style="width:auto" />
               <button type="submit" class="btn btn-outline-danger mb-3 mt-3">
@@ -165,7 +165,7 @@
                   </div>
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K9" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K9')">
+                      th:onclick="getMesa([[${place}]] , 'K9')">
                       <h5>K09</h5>
                     </div>
                     <hr class="table-right" />
@@ -176,7 +176,7 @@
                   </div>
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K11" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K11')">
+                      th:onclick="getMesa([[${place}]] , 'K11')">
                       <h5>K11</h5>
                     </div>
                     <hr class="table-right" />
@@ -193,7 +193,7 @@
                     </div>
                     <hr class="table-right" />
                     <div class="place place_empty" id="K14" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K14')">
+                      th:onclick="getMesa([[${place}]] , 'K14')">
                       <h5>K14</h5>
                     </div>
                   </div>
@@ -202,35 +202,36 @@
                 <div class="d-flex justify-content-end container-fluid">
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K15" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K15')">
+                      th:onclick="getMesa([[${place}]] , 'K15')">
                       <h5>K15</h5>
                     </div>
                   </div>
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K16" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K16')">
+                      th:onclick="getMesa([[${place}]] , 'K16')">
                       <h5>K16</h5>
                     </div>
                     <hr class="table-right" />
                     <div class="place place_empty" id="K17" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K17')">
+                      th:onclick="getMesa([[${place}]] , 'K17')">
                       <h5>K17</h5>
                     </div>
                   </div>
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K18" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K18')">
+                      th:onclick="getMesa([[${place}]] , 'K18')">
                       <h5>K18</h5>
                     </div>
                     <hr class="table-right" />
                     <div class="place place_empty" id="K19" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K19')">
+                      th:onclick="getMesa([[${place}]] , 'K19')">
                       <h5>K19</h5>
                     </div>
                   </div>
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K20" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K20')">
+
+                      th:onclick="getMesa([[${place}]] , 'K20')">
                       <h5>K20</h5>
                     </div>
                   </div>
@@ -287,19 +288,19 @@
               <div class="d-flex justify-content-center p-1 my-2 mx-2 align-items-center" style="width:auto;">
                 <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                   <div class="place place_empty" id="K25" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                    onclick="getMesa([[${place}]] , 'K25')">
+                    th:onclick="getMesa([[${place}]] , 'K25')">
                     <h5>K25</h5>
                   </div>
                 </div>
                 <div class="d-flex flex-column align-items-center">
                   
                   <div class="place place_empty" id="K26" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                    onclick="getMesa([[${place}]] , 'K26')">
+                    th:onclick="getMesa([[${place}]] , 'K26')">
                     <h5>K26</h5>
                   </div>
                   <hr class="table-right" />
                   <div class="place place_empty" id="K27" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                    onclick="getMesa([[${place}]] , 'K27')">
+                    th:onclick="getMesa([[${place}]] , 'K27')">
                     <h5>K27</h5>
                   </div>
                 </div>
@@ -320,36 +321,40 @@
       </div>
     </div>
   </main>
-          <!-- Modal -->
-          <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
-               data-bs-keyboard="false">
-            <div class="modal-dialog">
-              <div class="modal-content" style="background-color: var(--dark-100);">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalInfo">Deseja reservar mesa?</h5>
-                  <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                          th:onclick="cleanModal()"></button>
-                </div>
-                <form th:onsubmit="verifyInfo(event)">
-                  <h6 id="place_name" class="p-2 text-center"></h6>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
+       data-bs-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: var(--dark-100);">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalInfo">Deseja reservar mesa?</h5>
+          <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                  th:onclick="cleanModalReserva()"></button>
+        </div>
+        <form th:onsubmit="verifyInfo(event)">
+          <h6 id="place_name" class="p-2 text-center"></h6>
           <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
-                  <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
-        <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
+          <input type="text" id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
+          <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
           <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
           <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date" style="width:auto;background-color:var(--gray-50)" />
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="submit" class="btn btn-outline-primary mt-2" style="width:50%;">
-            Reservar
-          </button>
-          <button type="button" id="btnClose" class="btn btn-outline-danger mt-2" data-bs-dismiss="modal"
-            style="width:40%;" th:onclick="cleanModal()">
-            Fechar
-          </button>
-        </div>
-                </form>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="submit" class="btn btn-outline-primary mt-2" style="width:50%;">
+              Reservar
+            </button>
+            <button type="button" id="btnClose" class="btn btn-outline-danger mt-2" data-bs-dismiss="modal"
+                    style="width:40%;" th:onclick="cleanModalReserva()">
+              Fechar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+
+
   <footer class="container-fluid text-white container-sm" style="background-color:var(--dark-100)">
     <div class="container">
       <div class="row align-items-center justify-content-center">
@@ -379,6 +384,14 @@
       </div>
     </div>
   </footer>
+
+  <script th:inline="javascript">
+  function cleanModalReserva(){
+          document.querySelector("#place_info").textContent = " "
+          document.querySelector("#place_name").textContent = " "
+  }
+
+  </script>
 
   <!-- JavaScript Bundle with Popper -->
 
