@@ -77,8 +77,6 @@ function date(data) {
           }
 
 
-
-
 function getMesa(places, id) {
       let result = places.filter(resp => resp.name == id.toUpperCase())
       createModal(result[0])
