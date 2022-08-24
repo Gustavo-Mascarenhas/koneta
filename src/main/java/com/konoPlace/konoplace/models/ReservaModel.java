@@ -19,7 +19,7 @@ public class ReservaModel {
 
     @ManyToOne
     @JsonIgnoreProperties("reserva")
-    private UserModel usuario;
+    private UserModel user;
 
     @ManyToOne
     @JsonIgnoreProperties("reserva")
