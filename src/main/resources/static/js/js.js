@@ -90,7 +90,6 @@ function getMesa(places, id) {
       document.querySelector("#place_info").textContent += `Periféricos inclusos : ${place.perifericos.map(resp => {
         return ` ${resp} `
           })}`
-          return getPlaceInfo(place)
           console.log(place)
           }
 
