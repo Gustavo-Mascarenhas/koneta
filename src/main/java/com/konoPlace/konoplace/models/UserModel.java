@@ -43,7 +43,7 @@ public class UserModel {
     @NotBlank
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("user")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("usuario")
     private List<ReservaModel> reserva;
 }

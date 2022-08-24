@@ -148,7 +148,7 @@ function getMesa(places, id) {
               mesa : {
                 id : idPlace
               },
-              user : {
+              usuario: {
                 id: idUser
               }
             }
