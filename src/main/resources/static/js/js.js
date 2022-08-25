@@ -132,12 +132,19 @@ function getMesa(places, id) {
           })
           }
 
-          const verifyInfo = (e) =>{
+          const verifyInfo = (e,reservas) =>{
             e.preventDefault();
             let dateInfo = e.target.date.value;
             let idPlace = e.target.placeID.value;
 
             let idUser = e.target.idUser.value;
+            console.log(reservas)
+             const result = reservas.filter(resp=>{
+                        resp.date == dateInfo && resp.mesa.id == idPlace
+               })
+
+              console.log(result[0] + "Result pesquisa with mesa and date equal")
+
             console.log(`data : ${dateInfo} e idLugar : ${idPlace} e idUsers : ${idUser}`)
 
             const data = {
@@ -149,12 +156,13 @@ function getMesa(places, id) {
                 id: idUser
               }
             }
+
             if(dateInfo == null || dateInfo.length == 0 ){
                 alert("A data não pode ser nula")
                 return
             }else{
                  console.log(`dados : ${JSON.stringify(data)}`)
-                        createReserva(data)
+                       // createReserva(data)
             }
 
 
