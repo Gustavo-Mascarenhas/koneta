@@ -27,8 +27,9 @@
 
           <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
             alt="logout" />
-
-          <a th:href="@{/}"><img src="https://img.icons8.com/ios/50/F97A2D/calendar--v1.png" class="icon mx-3"
+<a th:href="@{/about}" class="icon mx-3"><img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png"/></a>
+            <a target="_blank" class="icon mx-3" href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png"/></a>
+          <a th:href="@{/}"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3"
               alt="schedule"></a>
           <a th:href="@{/perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3"
               alt="user profile" /></a>
@@ -67,13 +68,13 @@
                         <p class="card-text mx-2" id="mesa_identify"  th:text="${reservas.mesa.name}"></p>
                     </div>
                     <div class="card-text mt-2 d-flex">
-                        Data da reserva
+                        Data da reserva : ano-mes-dia
                         <p class="card-text mx-2" id="date_reserve" th:text="${reservas.date}" ></p>
                     </div>
                     <div class="card-text mt-2 d-flex" >
                         Incluso na mesa :
                     </div>
-                    <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife"  th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
+                    <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife" th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
                     <a th:href="@{/}" class="btn btn-outline-success" style="width:100%;">Ver Mapa</a>
                     <div class="d-flex mt-3">
                         <a data-bs-toggle="modal" data-bs-target="#modalEditReserva" class="btn btn-outline-primary me-1"
@@ -81,10 +82,11 @@
                         <a data-bs-toggle="modal" data-bs-target="#modalDeleteReserva" class="btn btn-outline-danger"
                            style="width:50%;" th:onclick="verifyData([[${reservas}]])">Excluir</a>
                     </div>
+                    </div>
             </div>
-        </div>
-        </div>
-        </div>
+            </div>
+            </div>
+      </div>
 
         <!-- Modal -->
         <div class="modal fade" id="modalDeleteReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
@@ -115,6 +117,9 @@
                 </div>
             </div>
         </div>
+        </div>
+
+
     </div>
 
   </main>
@@ -243,7 +248,7 @@
       let place_date = document.querySelector(".place_data")
       document.querySelector(".placeid").textContent=info.id
       place_info.textContent = `Kono identification : ${info.mesa.name}`
-      place_date.textContent = `Data : ${formatData(dateV)}`
+      place_date.textContent = `Data da Reserva: ${formatData(dateV)}`
 
       document.querySelector("#f_deleteReserva").addEventListener("submit", (e)=>{
       e.preventDefault()
@@ -253,7 +258,7 @@
     }
 
     const editReserva = async (date) =>{
-        const url = `http://localhost:8087/reserva`
+        const url = `https://testkoneta.herokuapp.com/reserva`
 
         const data = {
             id : id,
@@ -272,8 +277,7 @@
                   "Access-Control-Request-Method": "*",
                   "Accept": "application/json",
               },
-            },
-           
+            }
             )
             .then(response => {
             })
@@ -291,7 +295,7 @@
 
 
     async function deleteReserva(data){
-            const url = `http://localhost:8087/reserva/${data}`
+            const url = `https://testkoneta.herokuapp.com/reserva/${data}`
 
             const result = await fetch (url,
             {

@@ -14,7 +14,7 @@
     <link rel="shortcut icon" th:href="@{/assets/orange-logo.png}" type="image/x-icon">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg" th:style="@{background:var(--dark-100)}">
+  <nav class="navbar navbar-expand-lg" th:style="@{background-color:var(--dark-100)}">
     <div class="container-fluid">
         <a class="navbar-brand " th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt="" th:style="@{width:150px}"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -24,7 +24,10 @@
         <div class="d-flex" role="search">
             <span class="navbar-text container-fluid">
               <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class= "icon mx-3" alt="logout" />
-                <a th:href="@{/}"><img src="https://img.icons8.com/ios/50/F97A2D/calendar--v1.png" class="icon mx-3" alt="schedule"></a>
+                <a class="icon mx-3" th:href="@{/about}"><img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png"/></a>
+                <a class="icon mx-3" target="_blank" href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png"/></a>
+                <a th:href="@{/}"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3" alt="schedule"></a>
+
                 <a th:href="@{perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3" alt="user profile" /></a>
                 <form name="logout" th:action="@{logout}" method="POST" class="icon mx-3 d-flex">
             <input type="submit" value="Sair" class="btn btn-primary">
@@ -52,37 +55,35 @@
                                   <img th:src="*{foto}" alt="image_usuario" id="uploadPreview" th:style="@{width: 110px; height: 110px;}">
                               </label>
                           </div>
-
-                          </div>
                             <div class="mb-3">
                                 <label>Link da foto</label>
                                 <input id="uploadImage" name="foto" th:field="*{foto}"  type="text" class="form-control" placeholder="nome" th:onchange="PreviewImage()">
                             </div>
                               <div class="mb-3">
                                   <label>Nome</label>
-                                <h6 id="name" name="nome" th:text="*{nome}"  type="text" class="form-control"  placeholder="nome"></h6>
+                                <input id="name" name="nome" th:field="*{nome}"  type="text" class="form-control" >
                               </div>
                               <div class="mb-3">
                                   <label>Cargo</label>
-                                <h6 id="job" name="cargo"  th:text="*{cargo}"  type="text"  class="form-control"  placeholder="cargo"></h6>
+                                <input id="job" name="cargo"  th:field="*{cargo}"  type="text"  class="form-control"  >
                               </div>
                               <div class="mb-3">
                                   <label>Departamento</label>
-                                <h6 id="depart" th:text="*{departamento}" name="departamento" type="text" class="form-control"  placeholder="departamento"></h6>
+                                <input id="depart" th:field="*{departamento}" name="departamento" type="text" class="form-control"  ></input>
                               </div>
                               <div class="mb-3">
                                   <label>Telefone</label>
-                                <h6 id="phone" th:text="*{telefone}" name="telefone"  type="text" class="form-control"  placeholder="telefone"></h6>
+                                <input id="phone" th:field="*{telefone}" name="telefone"  type="text" class="form-control" >
                               </div>
                               <div class="mb-3">
                                   <label>Email</label>
-                                <h6 id="email" th:text="*{email}" name="email"  type="email" class="form-control"  placeholder="email"></h6>
+                                <input id="email" th:field="*{email}" name="email"  type="email" class="form-control" ></input>                                
                               </div>
-
                               <div class="d-flex flex-column ">
 
                                 <button type="button"  data-bs-toggle="modal" data-bs-target="#modalPerfil" class="btn btn-outline-danger mb-3 mt-3"  >Excluir conta</button>
                               </div>
+
 
                           </form>
                     </div>
@@ -94,6 +95,31 @@
                 </div>
             </div>
   </main>
+
+<!--  <div class="modal fade" id="modalPerfil" tabindex="-1"  aria-labelledby="modalInfo" data-bs-backdrop="static" data-bs-keyboard="false">-->
+<!--      <div class="modal-dialog" th:object="${user}">-->
+<!--          <form name="f_delete">-->
+<!--              <div class="modal-content" th:style="@{background:var(&#45;&#45;dark-100);}">-->
+<!--                  <input hidden type="text" th:field="${user.id}" th:value="${user.id}">-->
+<!--                  <div class="modal-header">-->
+<!--                      <h5 class="modal-title" id="modalInfo"> Deletar conta </h5>-->
+<!--                      <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cleanModal()"></button>-->
+<!--                  </div>-->
+<!--                  <h6>Deseja excluir sua conta ? </h6>-->
+<!--                  <h6 class="modal-body m-0" id="email_info" th:field="*{email}"></h6>-->
+<!--                      <h6 class="text-center" id="name_user" th:text="${user.nome}"></h6>-->
+<!--                      <h6 class="modal-body m-0 text-center" id="place_info" th:text="${user.email}">-->
+
+<!--                      <div class="modal-footer d-flex justify-content-center">-->
+<!--                          <button type="button" th:onclick="verifyForDelete()" class="btn btn-outline-success" th:style="@{width:50%;}">Excluir conta</button>-->
+<!--                          <button type="button" id="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()" th:style="@{width:40%;}">Cancelar</button>-->
+<!--                      </div>-->
+
+
+<!--              </div>-->
+<!--          </form>-->
+<!--      </div>-->
+<!--  </div>-->
 
   <footer class="container-fluid text-white" th:style="@{background:var(--dark-100)}">
       <div class="container">
@@ -137,30 +163,33 @@
       </div>
   </footer>
 
-<!-- Modal -->
-<div class="modal fade" id="modalPerfil" tabindex="-1"  aria-labelledby="modalInfo" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog" th:object="${user}">
-      <form name="f_delete" th:onsubmit="verifyUser(event,[[${user.id}]])" method="DELETE">
-    <div class="modal-content" th:style="@{background-color:var(--dark-100);}">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalInfo"> Deletar conta </h5>
-        <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cleanModal()"></button>
-      </div>
-            <h6>Deseja excluir sua conta ? </h6>
-        <h6 class="modal-body m-0" id="email_info" th:field="*{email}"></h6>
-            <h6 class="text-center" id="name_user" th:text="${user.nome}"></h6>
-      <h6 class="modal-body m-0 text-center" id="place_info" th:text="${user.email}">
-      </h6>
-      <div class="modal-footer d-flex justify-content-center">
-          <button type="submit" class="btn btn-outline-success" th:style="@{width:50%;}">Excluir conta</button>
-          <button type="button" id="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()" th:style="@{width:40%;}">Cancelar</button>
-      </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalPerfil" tabindex="-1"  aria-labelledby="modalInfo" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog" th:object="${user}">
+          <form name="f_delete" th:onsubmit="verifyUser(event,[[${user.id}]])" method="DELETE">
+              <div class="modal-content" th:style="@{background-color:var(--dark-100);}">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="modalInfo"> Deletar conta </h5>
+                      <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cleanModal()"></button>
+                  </div>
+                  <h6>Deseja excluir sua conta ? </h6>
+                  <h6 class="modal-body m-0" id="email_info" th:field="*{email}"></h6>
+                  <h6 class="text-center" id="name_user" th:text="${user.nome}"></h6>
+                  <h6 class="modal-body m-0 text-center" id="place_info" th:text="${user.email}">
+                  </h6>
+                  <div class="modal-footer d-flex justify-content-center">
+                      <button type="submit" class="btn btn-outline-success" th:style="@{width:50%;}">Excluir conta</button>
+                      <button type="button" id="btnClose" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()" th:style="@{width:40%;}">Cancelar</button>
+                  </div>
 
 
-    </div>
-      </form>
+              </div>
+          </form>
+      </div>
   </div>
-</div>
+
+  </script>
 
 
   <script th:inline="javascript">
@@ -171,7 +200,7 @@
           }
 
     const deleteUser = async (data) => {
-            const url = `http://localhost:8087/${data}`
+            const url = `https://testkoneta.herokuapp.com/${data}`
 
             const result = await fetch(url,
             {

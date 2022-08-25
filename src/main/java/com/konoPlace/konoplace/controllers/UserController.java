@@ -77,9 +77,16 @@ public class UserController {
 
     @GetMapping("/test")
     public ModelAndView testScreen(){
-        ModelAndView model = new ModelAndView("test");
+        ModelAndView model = new ModelAndView();
+        model.setViewName("placeAdd.html");
         MesaModel mesa = new MesaModel();
         model.addObject("mesa", mesa);
+        return model;
+    }
+    @GetMapping("/about")
+    public ModelAndView aboutScreen(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("about.html");
         return model;
     }
 
