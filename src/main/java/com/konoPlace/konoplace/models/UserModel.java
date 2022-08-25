@@ -29,6 +29,7 @@ public class UserModel {
     @NotBlank
     private String cargo;
 
+    @Column(nullable=true)
     private String foto;
 
     @NotBlank
@@ -37,7 +38,7 @@ public class UserModel {
     @NotBlank
     private String senha;
 
-
+    @Column(nullable=true)
     private String telefone;
 
     @NotBlank
