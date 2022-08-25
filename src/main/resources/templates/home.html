@@ -328,7 +328,7 @@
                 <div class="modal-header">
                   <h5 class="modal-title" id="modalInfo">Deseja reservar mesa?</h5>
                   <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                          th:onclick="cleanModal()"></button>
+                          th:onclick="cleanModalReserva()"></button>
                 </div>
                 <form th:onsubmit="verifyInfo(event)">
                   <h6 id="place_name" class="p-2 text-center"></h6>
@@ -342,7 +342,7 @@
             Reservar
           </button>
           <button type="button" id="btnClose" class="btn btn-outline-danger mt-2" data-bs-dismiss="modal"
-            style="width:40%;" th:onclick="cleanModal()">
+            style="width:40%;" th:onclick="cleanModalReserva()">
             Fechar
           </button>
         </div>
@@ -380,6 +380,13 @@
     </div>
   </footer>
 
+  <script th:inline="javascript">
+  function cleanModalReserva(){
+          document.querySelector("#place_info").textContent = " "
+          document.querySelector("#place_name").textContent = " "
+  }
+
+  </script>
   <!-- JavaScript Bundle with Popper -->
 
   <script th:src="@{/js/trocarcordefundo.js}"></script>
