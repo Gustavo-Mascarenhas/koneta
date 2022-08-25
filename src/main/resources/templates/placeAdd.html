@@ -44,10 +44,10 @@
 
 <main>
   <div class="container-fluid">
-    <h1>aaaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>
-    <form th:object="${mesa}" th:action="@{/mesa}" method="post">
-      <input type="text" th:field="*{name}">
-      <input type="text" th:field="*{perifericos}">
+    <h1>Adicionar konoPlace</h1>
+    <form method="post" th:onsubmit="verifyInfoMesa(event)">
+      <input type="text" name="konoMesa" id="konoMesa">
+      <input type="text" name="perife" id="perife">
       <button type="submit">Enviar</button>
     </form>
   </div>
@@ -95,7 +95,52 @@
 </footer>
 
 
+<script th:inline="javascript">
+ function verifyInfoMesa(e){
+          e.preventDefault();
+          let perife = e.target.perife.value
+          const mesaName = e.target.konoMesa.value
+          const perifeKono = perife.split(",")
+          console.log(perifeKono)
+          console.log(mesaName)
 
+          const data = {
+          name : mesaName,
+          perifericos: perifeKono
+          }
+
+          postMesa(data)
+  }
+
+    async function postMesa(data){
+      const url = "https://testkoneta.herokuapp.com/mesa"
+
+      const result = await fetch(url,
+                {
+                  method: 'POST',
+                  headers: {
+                      'Content-type': "application/json; charset=UTF-8",
+                      "Access-Control-Request-Headers": "*",
+                      "Access-Control-Request-Method": "*",
+                      "Accept": "application/json"
+                  },
+                  body: JSON.stringify(data)
+              })
+
+          try{
+            const content = await result.json();
+            console.log(content);
+            alert("Mesa adicionada com sucesso")
+            location.reload()
+          }catch(e){
+            alert("Erro ao criar mesa"+ e)
+            location.reload()
+          }
+      }
+
+
+
+  </script>
 
 
 <!-- JavaScript Bundle with Popper -->

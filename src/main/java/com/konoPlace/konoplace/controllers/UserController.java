@@ -83,6 +83,12 @@ public class UserController {
         model.addObject("mesa", mesa);
         return model;
     }
+    @GetMapping("/about")
+    public ModelAndView aboutScreen(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("about.html");
+        return model;
+    }
 
     @PostMapping("/registerMesa")
     public ModelAndView createPlace(@ModelAttribute MesaModel mesa , HttpServletRequest request){

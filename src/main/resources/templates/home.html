@@ -31,8 +31,10 @@
         <span class="navbar-text">
           <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
             alt="logout" />
-            <a th:href="@{/}"><img src="https://img.icons8.com/ios/50/F97A2D/calendar--v1.png" class="icon mx-3"
-              alt="schedule"></a>
+            <a class="icon mx-3" th:href="@{/about}"><img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png"/></a>
+            <a target="_blank" class="icon mx-3" href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png"/></a>
+           <a th:href="@{/}"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3"
+                                  alt="schedule"></a>
           <a th:href="@{/perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3"
               alt="user profile" /></a>
 
@@ -76,7 +78,7 @@
                 <div class="place place_kono">K</div>
               </div>
               <div class="col-1">
-                <h6 class="mt-1">Ocupado</h6>
+                <h6 class="mt-1">Okupado</h6>
               </div>
             </div>
           </div>
@@ -257,14 +259,14 @@
             <div class="d-flex flex-column p-5">
               <div class="d-flex">
                 <hr class="table-side" />
-                <div class="place place_empty" id="K23" data-bs-toggle="modal" data-bs-target="#modalReserva">
+                <div class="place place_kono" id="K23" >
                   K23
                 </div>
               </div>
 
               <div class="d-flex mt-5">
                 <hr class="table-side" />
-                <div class="place place_empty" id="K24" data-bs-toggle="modal" data-bs-target="#modalReserva">
+                <div class="place place_kono" id="K24">
                   K24
                 </div>
               </div>
@@ -273,10 +275,17 @@
         </div>
         <div class="d-flex flex-column">
           <div class="d-flex justify-content-between align-content-between align-items-end">
-            <div class="d-flex flex-column justify-content-center align-items-end"
-              style="border:solid 2px;min-height:20vh;width:50%;">
-              <h5 class="mx-1">Sala Tesla</h5>
+            <div class="d-flex flex-column align-content-center" style="width:60%">
+              <div class="d-flex flex-column justify-content-center align-items-end"
+              style="border:solid #FF7B01 2px;min-height:20vh;width:100%;">
+              <h5 class="mx-1">Servidores</h5>
             </div>
+            <div class="d-flex flex-column justify-content-center align-items-end"
+            style="border:solid 2px;min-height:20vh;width:100%;">
+            <h5 class="mx-1">Sala Tesla</h5>
+          </div>
+            </div>
+           
 
             <div class="d-flex flex-column">
               <div class="d-flex justify-content-center p-1 my-2 mx-2 align-items-center" style="width:auto;">
@@ -321,6 +330,34 @@
       </div>
     </div>
   </main>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
+               data-bs-keyboard="false">
+            <div class="modal-dialog">
+              <div class="modal-content" style="background-color: var(--dark-100);">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalInfo">Deseja reservar mesa?</h5>
+                  <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                          th:onclick="cleanModalReserva()"></button>
+                </div>
+                <form th:onsubmit="verifyInfo(event)">
+                  <h6 id="place_name" class="p-2 text-center"></h6>
+          <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
+                  <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
+        <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
+          <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
+          <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date" style="width:auto;background-color:var(--gray-50)" />
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-primary mt-2" style="width:50%;">
+            Reservar
+          </button>
+          <button type="button" id="btnClose" class="btn btn-outline-danger mt-2" data-bs-dismiss="modal"
+            style="width:40%;" th:onclick="cleanModalReserva()">
+            Fechar
+          </button>
+        </div>
+                </form>
   </div>
 
   <!-- Modal -->
@@ -335,8 +372,8 @@
         </div>
         <form th:onsubmit="verifyInfo(event)">
           <h6 id="place_name" class="p-2 text-center"></h6>
-          <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
-          <input type="text" id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
+          <input type="text" hidden id="placeID" name="placeID" class="p-2 text-center">
+          <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
           <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
           <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
           <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date" style="width:auto;background-color:var(--gray-50)" />
@@ -350,6 +387,7 @@
             </button>
           </div>
         </form>
+
       </div>
     </div>
   </div>
@@ -392,7 +430,6 @@
   }
 
   </script>
-
   <!-- JavaScript Bundle with Popper -->
 
   <script th:src="@{/js/trocarcordefundo.js}"></script>
