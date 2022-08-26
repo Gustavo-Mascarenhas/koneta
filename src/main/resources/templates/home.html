@@ -373,7 +373,7 @@
               <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                 th:onclick="cleanModalReserva()"></button>
             </div>
-            <form th:onsubmit="verifyInfo(event,[[${reservas}]]})">
+            <form th:onsubmit="verifyInfo(event,[[${reservas}]])">
               <h6 id="place_name" class="p-2 text-center"></h6>
               <input type="text" hidden id="placeID" name="placeID" class="p-2 text-center">
               <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
