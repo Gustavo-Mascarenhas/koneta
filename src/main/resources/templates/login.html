@@ -20,57 +20,47 @@
 
 <body>
   <header>
-    <div class="container-fluid" style="background-color:var(--dark-100)">
+    <div class="container-fluid" th:style="@{background:var(--dark-100)}">
       <nav class="navbar">
-        <div class="container-fluid ">
-          <a class="navbar-brand " href="#">
-            <img th:src="@{/assets/text-logo-test.png}" alt=""></a>
+        <div class="container-fluid align-content-center">
+          <a class="navbar-brand " href="#"><img th:src="@{/assets/text-logo-test.png}" alt=""
+              th:style="@{width:150px}"></a>
           <div class="d-flex" role="search">
             <span class="navbar-text ">
               <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
                 alt="logout" />
 
+            </span>
           </div>
-
         </div>
-
-
-
-
       </nav>
     </div>
   </header>
 
-
   <main>
     <div class="container-fluid">
-      <div class="container">
-        <div class="row align-items-center justify-content-center m-0 p-0"
-          th:style="@{background-color: var(--bg-dark);}">
-          <div class="col-md-7 col-xl-7 col-xxl-7 col-sm-8 m-0 p-0">
-
-
-            <img th:src="@{/assets/woman.png}" alt="" class="rounded mx-auto img-fluid d-block">
-
-
-
+      <div class="row align-items-center justify-content-center" style="background-color: var(--bg);">
+        <div class="col-md-6 col-sm-5 col-xl-5 col-xxl-6 m-0 p-0">
+            <img src="../static/assets/joi-cover-2.png" alt="" class="rounded mx-auto img-fluid d-block">
           </div>
 
-          <div class="col-md-5 col-xl-5 col-xxl-5  col-sm-8">
+          <div class="col-md-6 col-sm-7 col-xl-6 col-xxl-6">
             <div class="row align-items-center justify-content-center">
               <div th:if="${param.error}">
                 <p class="text-danger">Invalid username or password</p>
               </div>
+
               <div th:if="${param.registerUser}">
                 <p class="text-success">Usuario cadastrado com sucesso</p>
               </div>
+
               <form th:action="@{/login}" method="post">
                 <h1 class="mb-3">Login</h1>
 
                 <div class="mb-3">
-
                   <input id="username" name="username" type="email" class="form-control" placeholder="Email">
                 </div>
+
                 <div class="mb-3">
                   <input id="password" name="password"  type="password" class="form-control" placeholder="Senha">
                 </div>
@@ -82,24 +72,13 @@
                 </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
     </div>
-
-
-
   </main>
 
-  <footer class="container-fluid text-white">
+  <footer class="container-fluid text-white" style="background:var(--dark-100)">
     <div class="container">
       <div class="row align-items-center  justify-content-center">
         <div class="col-sm-4 col-md-6">
@@ -107,7 +86,7 @@
         </div>
         <div class="col-sm-4 col-md-3">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page">KonoPlace + First tech</a>
+            <a class="nav-link" aria-current="page" href="">KonoPlace + First tech</a>
           </li>
         </div>
 
@@ -124,16 +103,9 @@
               <a href="https://www.linkedin.com/company/first-tech/mycompany/" target=_blank
                 class="nav-link text-white ">
                 <img src="https://img.icons8.com/color/30/undefined/linkedin.png" /></a>
+
             </li>
-
-
-
-
-
-
-
           </div>
-
         </div>
       </div>
     </div>
