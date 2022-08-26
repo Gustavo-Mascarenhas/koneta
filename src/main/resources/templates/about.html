@@ -21,11 +21,11 @@
 <header>
     <nav class="navbar navbar-expand-lg fixed-top mb-3" style="background-color: #303030;">
         <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand p-3 ms-5" href="#">
+            <a class="navbar-brand p-3 ms-5" href="About">
                 <img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px">
             </a>
             <div class="d-flex me-3">
-                <a href="#">
+                <a href="#About">
                     <h5 class="text-light m-3 link">Sobre</h5>
                 </a>
                 <a href="#team">
@@ -34,7 +34,7 @@
             </div>
 
             <form class="d-flex me-5">
-                <a th:href="@{/}" class="btn btn-outline-success">Entrar</a>
+                <a th:href="@{/login}" class="btn btn-outline-success">Entrar</a>
             </form>
         </div>
     </nav>
@@ -139,7 +139,7 @@ main .third {
                 </h1>
                 <h4 class="text-light mt-5 text-center">Sem mais problemas de escritório <span>cheio</span> ou uma planilha que <span>ninguém</span> usa . </h4>
                 <h4 class="text-light text-center mt-5 txt">Gostou da ideia ? Faça seu <a
-                        th:href="@{/}"><span>cadastro</span></a> e venha ser um <span>Kono</span>
+                        th:href="@{/register}"><span>cadastro</span></a> e venha ser um <span>Kono</span>
                 </h4>
             </div>
             <div class="col-md d-flex justify-content-center">
@@ -157,7 +157,8 @@ main .third {
                     </svg>
                     <button class="btn btn-outline-success mb-5 p-1"
                             style="width:207.77px;height:57px;font-size:30px;font-weight: bold;" type="submit"
-                            routerLink="/signUp">CADASTRAR</button>
+
+                            th:href=@{/register}">CADASTRAR</button>
                 </div>
 
             </div>
