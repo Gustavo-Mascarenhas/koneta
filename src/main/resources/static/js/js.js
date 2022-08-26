@@ -132,7 +132,7 @@ function getMesa(places, id) {
           })
           }
 
-          const verifyInfo = (e) =>{
+          const verifyInfo = (e,reservas) =>{
             e.preventDefault();
             let dateInfo = e.target.date.value;
             let idPlace = e.target.placeID.value;
