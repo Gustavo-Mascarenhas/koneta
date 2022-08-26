@@ -22,7 +22,7 @@
 
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand text-white" th:href="@{/home}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
+      <a class="navbar-brand text-white" th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -33,14 +33,14 @@
             alt="logout" />
             <a class="icon mx-3" title="tela inicial" th:href="@{/about}"><img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png"/></a>
             <a target="_blank" title="pesquisa de satisfação" class="icon mx-3" href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png"/></a>
-           <a th:href="@{/home}" title="Mapa Konomesas"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3"
+           <a th:href="@{/}" title="Mapa Konomesas"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3"
                                   alt="schedule"></a>
           <a title="Perfil de usuário" th:href="@{/perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3"
               alt="user profile" /></a>
 
           <form name="logout" action="logout" method="post" class="icon mx-3">
-              <input hidden type="submit" value="Sair" class="btn btn-primary">
-            <img src="https://img.icons8.com/ios/24/F97A2D/exit.png " class="icon" alt="logout" />
+<!--              <input type="submit" class="btn btn-primary icon" style="background-image:url('https://img.icons8.com/ios/24/F97A2D/exit.png');background-repeat: no-repeat;">-->
+              <img type="submit" class="btn btn-primary icon" src="https://img.icons8.com/ios/24/F97A2D/exit.png" alt="logout" style="height:24px;width:24px;" />
           </form>
 
         </span>
