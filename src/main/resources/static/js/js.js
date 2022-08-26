@@ -140,6 +140,7 @@ function getMesa(places, id) {
             let idUser = e.target.idUser.value;
 
             let verifyIfHasReservation = reservas.filter(checkDateAndPlace)
+            console.log(verifyIfHasReservation)
 
             function checkDateAndPlace(resp){
               return resp.date == dateInfo && resp.mesa.id == idPlace
