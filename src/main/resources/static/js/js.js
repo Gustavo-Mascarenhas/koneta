@@ -138,14 +138,12 @@ function getMesa(places, id) {
             let idPlace = e.target.placeID.value;
 
             let idUser = e.target.idUser.value;
-            console.log(reservas)
-             const result = reservas.filter(resp=>{
-                        resp.date == dateInfo && resp.mesa.id == idPlace
-               })
 
-              console.log(result[0] + "Result pesquisa with mesa and date equal")
+            let verifyIfHasReservation = reservas.filter(checkDateAndPlace)
 
-            console.log(`data : ${dateInfo} e idLugar : ${idPlace} e idUsers : ${idUser}`)
+            function checkDateAndPlace(resp){
+              return resp.date == dateInfo && resp.mesa.id == idPlace
+            }
 
             const data = {
               date : `${dateInfo}`,
@@ -158,18 +156,22 @@ function getMesa(places, id) {
             }
 
             if(dateInfo == null || dateInfo.length == 0 ){
-                alert("A data não pode ser nula")
-                return
-            }else{
-                 console.log(`dados : ${JSON.stringify(data)}`)
-                       // createReserva(data)
+              alert("A data não pode ser nula")
+              return
+          }
+
+            if(verifyIfHasReservation.length > 0){
+              alert(`Existe uma reserva para esse dia`)
+              return
             }
 
-
+            //console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
+            createReserva(data)
+           
           }
 
           const createReserva = async (data) => {
-            const url = "https://testkoneta.herokuapp.com/reserva"
+            const url = "http://localhost:8087/reserva"
 
             const result = await fetch(url,
             {
