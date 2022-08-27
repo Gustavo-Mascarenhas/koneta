@@ -32,21 +32,20 @@
         <span class="navbar-text">
           <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
             alt="logout" />
-          <a class="icon mx-3" th:href="@{/about}"><img
+          <a class="icon mx-3" title="tela inicial" th:href="@{/about}"><img
               src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png" /></a>
-          <a target="_blank" class="icon mx-3" href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img
+          <a target="_blank" title="pesquisa de satisfação" class="icon mx-3"
+            href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img
               src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png" /></a>
-          <a th:href="@{/}"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3"
-              alt="schedule"></a>
-          <a th:href="@{/perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3"
-              alt="user profile" /></a>
-
-          <form name="logout" action="logout" method="post" class="icon mx-3">
-            <input type="submit" value="Sair" class="btn btn-primary">
-            <!--            <img src="https://img.icons8.com/ios/24/F97A2D/exit.png " class="icon mx-4" alt="logout" />-->
-          </form>
-
+          <a th:href="@{/}" title="Mapa Konomesas"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png"
+              class="icon mx-3" alt="schedule"></a>
+          <a title="Perfil de usuário" th:href="@{/perfil}"><img
+              src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3" alt="user profile" /></a>
         </span>
+        <form name="logout" action="logout" method="post" class="d-flex">
+          <input alt="Submit" value="Sair" type="image" class="p-2"
+            src="https://img.icons8.com/ios/24/F97A2D/exit.png" />
+        </form>
       </div>
     </div>
     </div>
@@ -67,24 +66,29 @@
             </form>
           </div>
 
+
+
           <div class="col-md-6 col-sm-6 col-xl-6 align-self-center p-1">
-            <div class="row align-items-center justify-content-start">
-              <div class="col-1">
-                <div class="place place_empty">K</div>
-              </div>
-              <div class="col-1">
-                <h6 class="mt-1">Livre</h6>
-              </div>
-            </div>
-            <div class="row align-items-center justify-content-start">
-              <div class="col-1">
+            <div class="row justify-content-md-center align-items-center">
+              <div class="col col-sm-1 mb-3">
                 <div class="place place_kono">K</div>
               </div>
-              <div class="col-1">
-                <h6 class="mt-1">Okupado</h6>
+              <div class="col-md-2  mb-3">
+                <h6 class="mt-1">Ocupado</h6>
               </div>
             </div>
+            <div class="row justify-content-md-center align-items-center">
+              <div class="col col-sm-1">
+                <div class="place place_empty">K</div>
+              </div>
+              <div class="col-md-2 ">
+                <h6 class="mt-1">Livre</h6>
+              </div>
+
+            </div>
           </div>
+
+
         </div>
       </div>
     </div>
@@ -345,12 +349,13 @@
         </div>
         <form th:onsubmit="verifyInfo(event,[[${reservas}]])">
           <h6 id="place_name" class="p-2 text-center"></h6>
-          <input type="text" hidden id="placeID" name="placeID" class="p-2 text-center">
+          <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
           <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
+          <h6 class="modal-body m-0 p-2 text-center">Periféricos inclusos :</h6>
           <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
-          <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
+          <h6 class="text-center m-3 p-3">Escolha a data de sua reserva:</h6>
           <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date"
-            style="width:auto;background-color:var(--gray-50)" />
+            style="width:auto;background-color:var(--dark-100);" />
           <div class="modal-footer d-flex justify-content-center">
             <button type="submit" class="btn btn-outline-primary mt-2" style="width:50%;">
               Reservar
@@ -361,10 +366,11 @@
             </button>
           </div>
         </form>
-
       </div>
     </div>
   </div>
+
+
 
 
   <footer class="container-fluid text-white container-sm" style="background-color:var(--dark-100)">
