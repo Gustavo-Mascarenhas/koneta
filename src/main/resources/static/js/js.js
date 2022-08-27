@@ -85,7 +85,7 @@ function getMesa(places, id) {
     function createModal(place) {
       document.querySelector("#placeID").value = place.id
       document.querySelector("#placeID").textContent += place.id
-      document.querySelector("#place_info").textContent += `Periféricos inclusos : ${place.perifericos.map(resp => {
+      document.querySelector("#place_info").textContent += `${place.perifericos.map(resp => {
         return ` ${resp} `
           })}`
           console.log(place)
