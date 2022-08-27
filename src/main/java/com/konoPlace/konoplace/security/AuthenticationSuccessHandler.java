@@ -22,7 +22,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
         System.out.println("Success authentication");
-        super.setDefaultTargetUrl("/home");
+        super.setDefaultTargetUrl("/");
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }

@@ -66,6 +66,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(beforeAuthenticationFilter , BeforeAuthenticationFilter.class)
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
