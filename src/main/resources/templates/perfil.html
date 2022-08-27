@@ -40,11 +40,11 @@
 
           <a th:href="@{perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3"
               alt="user profile" /></a>
-          <form name="logout" th:action="@{logout}" method="POST" class="icon mx-3 d-flex">
-            <input type="submit" value="Sair" class="btn btn-primary">
-            <!--            <img src="https://img.icons8.com/ios/24/F97A2D/exit.png " class="icon mx-4" alt="logout" />-->
-          </form>
         </span>
+        <form name="logout" action="logout" method="post" class="d-flex">
+          <input alt="Submit" value="Sair" class="p-2" type="image"
+            src="https://img.icons8.com/ios/24/F97A2D/exit.png" />
+        </form>
       </div>
     </div>
   </nav>
