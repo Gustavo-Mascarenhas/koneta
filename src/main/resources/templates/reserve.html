@@ -24,24 +24,24 @@
       <a class="navbar-brand text-white" th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt=""
           style="width:150px"></a>
       <div class="d-flex" role="search">
-        <span class="navbar-text text-white">
-
+        <span class="navbar-text">
           <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
             alt="logout" />
-          <a th:href="@{/about}" class="icon mx-3"><img
+          <a class="icon mx-3" title="tela inicial" th:href="@{/about}"><img
               src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png" /></a>
-          <a target="_blank" class="icon mx-3" href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img
+          <a target="_blank" title="pesquisa de satisfação" class="icon mx-3"
+            href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img
               src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png" /></a>
-          <a th:href="@{/}"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3"
-              alt="schedule"></a>
-          <a th:href="@{/perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3"
-              alt="user profile" /></a>
-
-          <form name="logout" th:action="@{/logout}" method="POST" class="icon mx-3 d-flex">
-            <input type="submit" value="Sair" class="btn btn-primary">
-          </form>
+          <a th:href="@{/}" title="Mapa Konomesas"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png"
+              class="icon mx-3" alt="schedule"></a>
+          <a title="Perfil de usuário" th:href="@{/perfil}"><img
+              src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3" alt="user profile" /></a>
 
         </span>
+        <form name="logout" th:action="@{/logout}" method="post" class="d-flex">
+          <input alt="Submit" value="Sair" class="p-2" type="image"
+            src="https://img.icons8.com/ios/24/F97A2D/exit.png" />
+        </form>
       </div>
     </div>
   </nav>
@@ -67,18 +67,18 @@
         <div class="card m-auto" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Reserva</h5>
-            <div class="card-text mt-2 d-flex">
+            <div class="card-text mt-2 d-flex mb-1">
               Mesa nome :
               <p class="card-text mx-2" id="mesa_identify" th:text="${reservas.mesa.name}"></p>
             </div>
-            <div class="card-text mt-2 d-flex">
+            <div class="card-text mx-2 mt-2 mb-2">
               Data da reserva : ano-mes-dia
-              <p class="card-text mx-2" id="date_reserve" th:text="${reservas.date}"></p>
             </div>
-            <div class="card-text mt-2 d-flex">
+            <p class="card-text mx-2 mb-2" id="date_reserve" th:text="${reservas.date}"></p>
+            <div class="card-text mt-2 mb-2 d-flex">
               Incluso na mesa :
             </div>
-            <p class="d-flex flex-column  align-items-center card-text mx-2" id="perife"
+            <p class="d-flex flex-column  align-items-center card-text mx-2 mb-2 mt-2" id="perife"
               th:each="perife :${reservas.mesa.perifericos}" th:text="${perife}"></p>
             <a th:href="@{/}" class="btn btn-outline-success" style="width:100%;">Ver Mapa</a>
             <div class="d-flex mt-3">
@@ -262,7 +262,7 @@
     }
 
     const editReserva = async (date) => {
-      const url = `http://localhost:8087/reserva`
+      const url = `https://testkoneta.herokuapp.com/reserva`
 
       const data = {
         id: id,
@@ -299,7 +299,7 @@
 
 
     async function deleteReserva(data) {
-      const url = `http://localhost:8087/reserva/${data}`
+      const url = `https://testkoneta.herokuapp.com/reserva/${data}`
 
       const result = await fetch(url,
         {

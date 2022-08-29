@@ -57,7 +57,7 @@ public class UserController {
       return ResponseEntity.ok(repository.findAll());
     }
 
-    @GetMapping("/home")
+    @GetMapping()
     public ModelAndView getMesaModel(HttpServletRequest request){
         ModelAndView model = new ModelAndView();
         model.setViewName("home.html");
@@ -83,7 +83,7 @@ public class UserController {
         model.addObject("mesa", mesa);
         return model;
     }
-    @GetMapping()
+    @GetMapping("/about")
     public ModelAndView aboutScreen(){
         ModelAndView model = new ModelAndView();
         model.setViewName("about.html");

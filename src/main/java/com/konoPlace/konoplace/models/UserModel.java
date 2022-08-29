@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
-@Table(name = "user")
+@Table(name = "usuario")
 @Entity
 @Data
 public class UserModel {
@@ -36,7 +36,6 @@ public class UserModel {
 
     @NotBlank
     private String senha;
-
 
     private String telefone;
 

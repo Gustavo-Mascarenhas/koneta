@@ -22,7 +22,8 @@
 
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand text-white" th:href="@{/home}"><img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px"></a>
+      <a class="navbar-brand text-white" th:href="@{/}"><img th:src="@{/assets/text-logo-test.png}" alt=""
+          style="width:150px"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,21 +32,22 @@
         <span class="navbar-text">
           <img id="element" src="https://img.icons8.com/ios-glyphs/30/white/moon-symbol.png" class="icon mx-3"
             alt="logout" />
-            <a class="icon mx-3" title="tela inicial" th:href="@{/about}"><img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png"/></a>
-            <a target="_blank" title="pesquisa de satisfação" class="icon mx-3" href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png"/></a>
-           <a th:href="@{/home}" title="Mapa Konomesas"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png" class="icon mx-3"
-                                  alt="schedule"></a>
-          <a title="Perfil de usuário" th:href="@{/perfil}"><img src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3"
-              alt="user profile" /></a>
-
-          <form name="logout" action="logout" method="post" class="icon mx-3">
-              <input hidden type="submit" value="Sair" class="btn btn-primary">
-            <img src="https://img.icons8.com/ios/24/F97A2D/exit.png " class="icon" alt="logout" />
-          </form>
-
+          <a class="icon mx-3" title="tela inicial" th:href="@{/about}"><img
+              src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/30/F97A2D/external-K-alphabet-icongeek26-glyph-icongeek26.png" /></a>
+          <a target="_blank" title="pesquisa de satisfação" class="icon mx-3"
+            href="https://forms.gle/nGHhnNJikyLVX4AJ8"><img
+              src="https://img.icons8.com/external-those-icons-lineal-those-icons/30/F97A2D/external-feedback-feedback-those-icons-lineal-those-icons.png" /></a>
+          <a th:href="@{/}" title="Mapa Konomesas"><img src="https://img.icons8.com/ios/30/F97A2D/calendar--v1.png"
+              class="icon mx-3" alt="schedule"></a>
+          <a title="Perfil de usuário" th:href="@{/perfil}"><img
+              src="https://img.icons8.com/ios-glyphs/30/F97A2D/user--v1.png" class="icon mx-3" alt="user profile" /></a>
         </span>
-        </div>
+        <form name="logout" action="logout" method="post" class="d-flex">
+          <input alt="Submit" value="Sair" type="image" class="p-2"
+            src="https://img.icons8.com/ios/24/F97A2D/exit.png" />
+        </form>
       </div>
+    </div>
     </div>
   </nav>
 
@@ -64,24 +66,29 @@
             </form>
           </div>
 
+
+
           <div class="col-md-6 col-sm-6 col-xl-6 align-self-center p-1">
-            <div class="row align-items-center justify-content-start">
-              <div class="col-1">
-                <div class="place place_empty">K</div>
-              </div>
-              <div class="col-1">
-                <h6 class="mt-1">Livre</h6>
-              </div>
-            </div>
-            <div class="row align-items-center justify-content-start">
-              <div class="col-1">
+            <div class="row justify-content-md-center align-items-center">
+              <div class="col col-sm-1 mb-3">
                 <div class="place place_kono">K</div>
               </div>
-              <div class="col-1">
+              <div class="col-md-2  mb-3">
                 <h6 class="mt-1">Ocupado</h6>
               </div>
             </div>
+            <div class="row justify-content-md-center align-items-center">
+              <div class="col col-sm-1">
+                <div class="place place_empty">K</div>
+              </div>
+              <div class="col-md-2 ">
+                <h6 class="mt-1">Livre</h6>
+              </div>
+
+            </div>
           </div>
+
+
         </div>
       </div>
     </div>
@@ -115,7 +122,7 @@
 
             <div class="d-flex justify-content-around container-fluid">
               <div class="d-flex flex-column">
-              
+
                 <div class="d-flex">
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K1" data-bs-toggle="modal" data-bs-target="#modalReserva"
@@ -172,7 +179,7 @@
                     </div>
                     <hr class="table-right" />
                     <div class="place place_empty" id="K10" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K10')">
+                      th:onclick="getMesa([[${place}]] , 'K10')">
                       <h5>K10</h5>
                     </div>
                   </div>
@@ -183,7 +190,7 @@
                     </div>
                     <hr class="table-right" />
                     <div class="place place_empty" id="K12" data-bs-toggle="modal" data-bs-target="#modalReserva"
-                         th:onclick="getMesa([[${place}]] , 'K12')">
+                      th:onclick="getMesa([[${place}]] , 'K12')">
                       <h5>K12</h5>
                     </div>
                   </div>
@@ -232,7 +239,6 @@
                   </div>
                   <div class="d-flex flex-column justify-content-center p-1 my-2 mx-2 align-items-center">
                     <div class="place place_empty" id="K20" data-bs-toggle="modal" data-bs-target="#modalReserva"
-
                       th:onclick="getMesa([[${place}]] , 'K20')">
                       <h5>K20</h5>
                     </div>
@@ -259,14 +265,14 @@
             <div class="d-flex flex-column p-5">
               <div class="d-flex">
                 <hr class="table-side" />
-                <div class="place place_empty" id="K23" data-bs-toggle="modal" data-bs-target="#modalReserva">
+                <div class="place place_kono" id="K23">
                   K23
                 </div>
               </div>
 
               <div class="d-flex mt-5">
                 <hr class="table-side" />
-                <div class="place place_empty" id="K24" data-bs-toggle="modal" data-bs-target="#modalReserva">
+                <div class="place place_kono" id="K24">
                   K24
                 </div>
               </div>
@@ -275,10 +281,17 @@
         </div>
         <div class="d-flex flex-column">
           <div class="d-flex justify-content-between align-content-between align-items-end">
-            <div class="d-flex flex-column justify-content-center align-items-end"
-              style="border:solid 2px;min-height:20vh;width:50%;">
-              <h5 class="mx-1">Sala Tesla</h5>
+            <div class="d-flex flex-column align-content-center" style="width:60%">
+              <div class="d-flex flex-column justify-content-center align-items-end"
+                style="border:solid #FF7B01 2px;min-height:20vh;width:100%;">
+                <h5 class="mx-1">Servidores</h5>
+              </div>
+              <div class="d-flex flex-column justify-content-center align-items-end"
+                style="border:solid 2px;min-height:20vh;width:100%;">
+                <h5 class="mx-1">Sala Tesla</h5>
+              </div>
             </div>
+
 
             <div class="d-flex flex-column">
               <div class="d-flex justify-content-center p-1 my-2 mx-2 align-items-center" style="width:auto;">
@@ -295,7 +308,7 @@
                   </div>
                 </div>
                 <div class="d-flex flex-column align-items-center">
-                  
+
                   <div class="place place_empty" id="K26" data-bs-toggle="modal" data-bs-target="#modalReserva"
                     th:onclick="getMesa([[${place}]] , 'K26')">
                     <h5>K26</h5>
@@ -324,66 +337,40 @@
     </div>
   </main>
 
-          <!-- Modal -->
-          <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
-               data-bs-keyboard="false">
-            <div class="modal-dialog">
-              <div class="modal-content" style="background-color: var(--dark-100);">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalInfo">Deseja reservar mesa?</h5>
-                  <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                          th:onclick="cleanModalReserva()"></button>
-                </div>
-                <form th:onsubmit="verifyInfo(event,[[${reservas}]])">
-                  <h6 id="place_name" class="p-2 text-center"></h6>
-          <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
-                  <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
-        <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
-          <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
-          <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date" style="width:auto;background-color:var(--gray-50)" />
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="submit" class="btn btn-outline-primary mt-2" style="width:50%;">
-            Reservar
-          </button>
-          <button type="button" id="btnClose" class="btn btn-outline-danger mt-2" data-bs-dismiss="modal"
-            style="width:40%;" th:onclick="cleanModalReserva()">
-            Fechar
-          </button>
-        </div>
-                </form>
-  </div>
-
   <!-- Modal -->
   <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="modalInfo" data-bs-backdrop="static"
-       data-bs-keyboard="false">
+    data-bs-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content" style="background-color: var(--dark-100);">
         <div class="modal-header">
           <h5 class="modal-title" id="modalInfo">Deseja reservar mesa?</h5>
           <button id="btnCloseIcon" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                  th:onclick="cleanModalReserva()"></button>
+            th:onclick="cleanModalReserva()"></button>
         </div>
-        <form th:onsubmit="verifyInfo(event)">
+        <form th:onsubmit="verifyInfo(event,[[${reservas}]])">
           <h6 id="place_name" class="p-2 text-center"></h6>
-          <input type="text" hidden id="placeID" name="placeID" class="p-2 text-center">
+          <input hidden type="text" id="placeID" name="placeID" class="p-2 text-center">
           <input type="text" hidden id="idUser" name="idUser" th:value="${userID}" class="p-2 text-center">
+          <h6 class="modal-body m-0 p-2 text-center">Periféricos inclusos :</h6>
           <h6 class="modal-body m-0 p-2 text-center" id="place_info"></h6>
-          <h6 class="text-center mt-3">Escolha a data de sua reserva:</h6>
-          <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date" style="width:auto;background-color:var(--gray-50)" />
+          <h6 class="text-center m-3 p-3">Escolha a data de sua reserva:</h6>
+          <input type="date" min="2022-08-08" name="date" class="form-control mx-auto p-3 mt-3" id="date"
+            style="width:auto;background-color:var(--dark-100);" />
           <div class="modal-footer d-flex justify-content-center">
             <button type="submit" class="btn btn-outline-primary mt-2" style="width:50%;">
               Reservar
             </button>
             <button type="button" id="btnClose" class="btn btn-outline-danger mt-2" data-bs-dismiss="modal"
-                    style="width:40%;" th:onclick="cleanModalReserva()">
+              style="width:40%;" th:onclick="cleanModalReserva()">
               Fechar
             </button>
           </div>
         </form>
-
       </div>
     </div>
   </div>
+
+
 
 
   <footer class="container-fluid text-white container-sm" style="background-color:var(--dark-100)">
@@ -417,10 +404,10 @@
   </footer>
 
   <script th:inline="javascript">
-  function cleanModalReserva(){
-          document.querySelector("#place_info").textContent = " "
-          document.querySelector("#place_name").textContent = " "
-  }
+    function cleanModalReserva() {
+      document.querySelector("#place_info").textContent = " "
+      document.querySelector("#place_name").textContent = " "
+    }
 
   </script>
   <!-- JavaScript Bundle with Popper -->
@@ -431,8 +418,8 @@
   <!-- JavaScript Bundle with Popper -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-          crossorigin="anonymous"></script>
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
 
 </body>
 

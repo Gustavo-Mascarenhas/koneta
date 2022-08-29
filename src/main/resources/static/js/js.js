@@ -85,7 +85,7 @@ function getMesa(places, id) {
     function createModal(place) {
       document.querySelector("#placeID").value = place.id
       document.querySelector("#placeID").textContent += place.id
-      document.querySelector("#place_info").textContent += `Periféricos inclusos : ${place.perifericos.map(resp => {
+      document.querySelector("#place_info").textContent += `${place.perifericos.map(resp => {
         return ` ${resp} `
           })}`
           console.log(place)
@@ -159,6 +159,8 @@ function getMesa(places, id) {
               alert("A data não pode ser nula")
               return
           }
+            //console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
+            createReserva(data)
 
             if(verifyIfHasReservation.length > 0){
               alert(`Existe uma reserva para esse dia`)
@@ -171,7 +173,7 @@ function getMesa(places, id) {
           }
 
           const createReserva = async (data) => {
-            const url = "http://localhost:8087/reserva"
+            const url = "https://testkoneta.herokuapp.com/reserva"
 
             const result = await fetch(url,
             {

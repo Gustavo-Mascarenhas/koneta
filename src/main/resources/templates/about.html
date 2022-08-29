@@ -21,11 +21,11 @@
 <header>
     <nav class="navbar navbar-expand-lg fixed-top mb-3" style="background-color: #303030;">
         <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand p-3 ms-5" href="About">
+            <a class="navbar-brand p-3 ms-5" th:href="@{/}">
                 <img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px">
             </a>
             <div class="d-flex me-3">
-                <a href="#About">
+                <a href="#about">
                     <h5 class="text-light m-3 link">Sobre</h5>
                 </a>
                 <a href="#team">
@@ -34,7 +34,7 @@
             </div>
 
             <form class="d-flex me-5">
-                <a th:href="@{/login}" class="btn btn-outline-success">Entrar</a>
+                <a th:href="@{/}" class="btn btn-outline-success">Entrar</a>
             </form>
         </div>
     </nav>
@@ -131,19 +131,19 @@ main .third {
   min-height: 5rem;
 }
     </style>
-    <div class="container-fluid first mt-5" id="About">
 
-        <div class=" ">
+    <div class="container-fluid first mt-5" id="about">
+
+        <div class="">
             <div class="col-md ms-5 mt-5 p-3">
                 <h1 class="text-light mt-5 text-center"><span>Konoplace</span> um site de reserva de mesas para <span>Firsteckers</span>
                 </h1>
                 <h4 class="text-light mt-5 text-center">Sem mais problemas de escritório <span>cheio</span> ou uma planilha que <span>ninguém</span> usa . </h4>
-                <h4 class="text-light text-center mt-5 txt">Gostou da ideia ? Faça seu <a
-                        th:href="@{/register}"><span>cadastro</span></a> e venha ser um <span>Kono</span>
+                <h4 class="text-light text-center mt-5 txt">Gostou da ideia ? agora você é um <span style="border-bottom:#F97A2D 1px solid">Kono</span>
                 </h4>
             </div>
             <div class="col-md d-flex justify-content-center">
-                <div class="row  d-flex justify-content-center align-items-center">
+                <div class="row d-flex justify-content-center align-items-center">
                     <svg class="mt-5 mb-5" width="636" height="448" viewBox="0 0 636 448" fill="none"
                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="636" height="448" fill="url(#pattern0)" />
@@ -158,13 +158,12 @@ main .third {
                     <button class="btn btn-outline-success mb-5 p-1"
                             style="width:207.77px;height:57px;font-size:30px;font-weight: bold;" type="submit"
 
-                            th:href=@{/register}">CADASTRAR</button>
+                            th:href="@{/register}">CADASTRAR</button>
                 </div>
 
-            </div>
+        </div>
         </div>
     </div>
-
     <div class="container-fluid third pb-5" id="team">
         <div class="p-3">
             <h1 class="p-3 mt-5 text-center text-light">Time de Desenvolvedores</h1>
@@ -357,7 +356,7 @@ main .third {
 
                     </div>
                     <h4 class="text-center mt-2">Thaina Colli</h4>
-                    <h5 class="text-center mt-2">Quality assurance & Tester</h5>
+                    <h5 class="text-center mt-2">Desenvolvedora fullstack & Tester</h5>
                 </div>
             </div>
 
@@ -369,7 +368,7 @@ main .third {
 
 <footer>
     <div class="d-flex justify-content-center align-items-center">
-       <img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px">
+        <img th:src="@{/assets/text-logo-test.png}" alt="" style="width:150px">
     </div>
 
     <h5 class="text-light text-center">© Todos os direitos reservados | <span>Konoplace</span> 2022</h5>

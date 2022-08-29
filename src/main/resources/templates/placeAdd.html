@@ -95,9 +95,8 @@
 </footer>
 
 
-
 <script th:inline="javascript">
-  function verifyInfoMesa(e){
+ function verifyInfoMesa(e){
           e.preventDefault();
           let perife = e.target.perife.value
           const mesaName = e.target.konoMesa.value
@@ -114,7 +113,7 @@
   }
 
     async function postMesa(data){
-      const url = "http://localhost:8087/mesa"
+      const url = "https://testkoneta.herokuapp.com/mesa"
 
       const result = await fetch(url,
                 {
@@ -139,8 +138,9 @@
           }
       }
 
-  </script>
 
+
+  </script>
 
 
 <!-- JavaScript Bundle with Popper -->
