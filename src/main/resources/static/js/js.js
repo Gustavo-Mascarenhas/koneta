@@ -136,7 +136,6 @@ function getMesa(places, id) {
             e.preventDefault();
             let dateInfo = e.target.date.value;
             let idPlace = e.target.placeID.value;
-
             let idUser = e.target.idUser.value;
 
             let verifyIfHasReservation = reservas.filter(checkDateAndPlace)
@@ -163,10 +162,11 @@ function getMesa(places, id) {
             if(verifyIfHasReservation.length > 0){
               alert(`Existe uma reserva para esse dia`)
               return
+            }else{
+                createReserva(data)
             }
-            //console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
-            createReserva(data)
-           
+            console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
+
           }
 
           const createReserva = async (data) => {
