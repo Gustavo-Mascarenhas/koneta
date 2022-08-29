@@ -71,7 +71,6 @@ function date(data) {
 
 }
 
-
            function checkCookie() {
               console.log(`The cookie is ${Cookies.get('userID')}`)
           }
@@ -126,7 +125,8 @@ function getMesa(places, id) {
           :
           (
           document.querySelector(`#${resp.mesa.name}`).classList.remove("place_kono"),
-          document.querySelector(`#${resp.mesa.name}`).classList.add("place_empty")
+          document.querySelector(`#${resp.mesa.name}`).classList.add("place_empty"),
+          alert(`Não existe reserva para essa data ${formatDateReserva(date)}`)
           )
 
           })
@@ -159,14 +159,11 @@ function getMesa(places, id) {
               alert("A data não pode ser nula")
               return
           }
-            //console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
-            createReserva(data)
 
             if(verifyIfHasReservation.length > 0){
               alert(`Existe uma reserva para esse dia`)
               return
             }
-
             //console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
             createReserva(data)
            
@@ -190,7 +187,7 @@ function getMesa(places, id) {
           try{
             const content = await result.json();
             console.log(content);
-            alert("Reserva criada com Sucesso hehehehehe")
+            alert("Reserva criada com Sucesso")
             location.reload()
           }catch(e){
             alert("Erro ao criar reserva"+ e)
