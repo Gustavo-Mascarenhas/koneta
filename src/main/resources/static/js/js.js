@@ -85,7 +85,7 @@ function getMesa(places, id) {
     function createModal(place) {
       document.querySelector("#placeID").value = place.id
       document.querySelector("#placeID").textContent += place.id
-      document.querySelector("#place_info").textContent += `Periféricos inclusos : ${place.perifericos.map(resp => {
+      document.querySelector("#place_info").textContent += `${place.perifericos.map(resp => {
         return ` ${resp} `
           })}`
           console.log(place)
@@ -132,13 +132,18 @@ function getMesa(places, id) {
           })
           }
 
-          const verifyInfo = (e) =>{
+          const verifyInfo = (e,reservas) =>{
             e.preventDefault();
             let dateInfo = e.target.date.value;
             let idPlace = e.target.placeID.value;
 
             let idUser = e.target.idUser.value;
-            console.log(`data : ${dateInfo} e idLugar : ${idPlace} e idUsers : ${idUser}`)
+
+            let verifyIfHasReservation = reservas.filter(checkDateAndPlace)
+
+            function checkDateAndPlace(resp){
+              return resp.date == dateInfo && resp.mesa.id == idPlace
+            }
 
             const data = {
               date : `${dateInfo}`,
@@ -149,15 +154,22 @@ function getMesa(places, id) {
                 id: idUser
               }
             }
+
             if(dateInfo == null || dateInfo.length == 0 ){
-                alert("A data não pode ser nula")
-                return
-            }else{
-                 console.log(`dados : ${JSON.stringify(data)}`)
-                        createReserva(data)
+              alert("A data não pode ser nula")
+              return
+          }
+            //console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
+            createReserva(data)
+
+            if(verifyIfHasReservation.length > 0){
+              alert(`Existe uma reserva para esse dia`)
+              return
             }
 
-
+            //console.log(`dados agenda pode ser usada: ${JSON.stringify(data)}`)
+            createReserva(data)
+           
           }
 
           const createReserva = async (data) => {

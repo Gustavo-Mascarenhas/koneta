@@ -53,12 +53,12 @@
 
         <div class="col-md-6 col-sm-7 col-xl-6 col-xxl-6">
           <div class="container-fluid">
-            <form class="m-5 needs-validation" method="POST" th:action="@{register}" th:object="${userModel}" >
+            <form class="m-5 needs-validation" method="POST" th:action="@{register}" th:object="${userModel}">
               <h1 class="mb-3">Cadastro</h1>
 
               <div class="mb-3">
-                <input th:field="*{nome}" id="name" name="nome" type="text" class="form-control" aria-describedby="emailHelp"
-                  placeholder="Nome Completo" required>
+                <input th:field="*{nome}" id="name" name="nome" type="text" class="form-control"
+                  aria-describedby="emailHelp" placeholder="Nome Completo" required>
               </div>
               <div class="mb-3 has-validation">
                 <input th:field="*{cargo}" id="validationCustom03" name="cargo" type="text" class="form-control"
@@ -69,14 +69,14 @@
                   placeholder="Departamento">
               </div>
               <div class="mb-3">
-                <input th:field="*{telefone}" id="phone" name="telefone" type="text" class="form-control" placeholder="Telefone">
+                <input th:field="*{telefone}" id="phone" name="telefone" type="text" class="form-control"
+                  placeholder="Telefone">
               </div>
               <div class="mb-3">
-                <input th:field="*{email}" id="email" name="email" type="email" class="form-control" placeholder="Email">
+                <input th:field="*{email}" id="email" name="email" type="email" class="form-control"
+                  placeholder="Email">
               </div>
-              <div class="mb-3">
-                <input th:field="*{foto}" id="foto" name="foto" type="text" class="form-control" placeholder="Link foto">
-              </div>
+
               <div class="mb-3">
                 <input id="pass" name="pass" type="password" class="form-control" placeholder="Senha">
               </div>
@@ -85,7 +85,7 @@
                   placeholder="Confirmar Senha">
               </div>
               <div class="mb-3">
-                <input th:field="*{role}"  hidden value="USER" name="role" class="form-control"/>
+                <input th:field="*{role}" hidden value="USER" name="role" class="form-control" />
 
               </div>
 
@@ -132,22 +132,11 @@
                   src="https://img.icons8.com/fluency/30/undefined/instagram-new.png" /></a>
             </li>
 
-
-
-
-
             <li class="nav-item col-md-6 col-sm-4">
               <a href="https://www.linkedin.com/company/first-tech/mycompany/" target=_blank
                 class="nav-link text-white ">
                 <img src="https://img.icons8.com/color/30/undefined/linkedin.png" /></a>
             </li>
-
-
-
-
-
-
-
           </div>
 
         </div>
@@ -156,12 +145,12 @@
   </footer>
 
 
-<script th:inline="javascript">
-  function verifyData(event){
-    event.preventDefault();
-  }
+  <script th:inline="javascript">
+    function verifyData(event) {
+      event.preventDefault();
+    }
 
-</script>
+  </script>
 
 
   <!-- JavaScript Bundle with Popper -->
